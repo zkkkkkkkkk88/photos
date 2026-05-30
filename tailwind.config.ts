@@ -22,7 +22,6 @@ export default {
         serif: ['"Noto Serif SC"', 'Georgia', 'serif'],
       },
       borderRadius: {
-        xl: '12px',
         '2xl': '16px',
         '3xl': '24px',
       },
