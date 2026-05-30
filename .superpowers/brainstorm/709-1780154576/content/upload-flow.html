@@ -1,0 +1,124 @@
+<h2>照片上传流程</h2>
+<p class="subtitle">从点击"添加照片"到发布成功</p>
+
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+
+  <div>
+    <div class="mockup">
+      <div class="mockup-header">📝 上传表单</div>
+      <div class="mockup-body" style="background: #FEF9F3; padding: 16px; font-size: 11px;">
+        <div style="background: #fff; border-radius: 10px; padding: 14px;">
+          <div style="text-align: center; margin-bottom: 10px; color: #C49494; font-size: 13px;">🌸 添加照片 · 四川省</div>
+
+          <div style="border: 2px dashed #F4C2C2; border-radius: 10px; padding: 24px; text-align: center; margin-bottom: 10px; background: #FFF5F5;">
+            <div style="font-size: 28px;">📷</div>
+            <div style="color: #F4C2C2; font-size: 11px;">拖拽或点击上传照片</div>
+            <div style="color: #B0A090; font-size: 9px;">支持 JPG/PNG，最大 10MB</div>
+          </div>
+
+          <div style="margin-bottom: 8px;">
+            <div style="color: #8B7D6D; font-size: 10px; margin-bottom: 2px;">标题 *</div>
+            <div style="background: #FEF9F3; border: 1px solid #E8DDD0; border-radius: 6px; padding: 6px 8px; color: #B0A090;">输入照片标题...</div>
+          </div>
+
+          <div style="margin-bottom: 8px;">
+            <div style="color: #8B7D6D; font-size: 10px; margin-bottom: 2px;">描述</div>
+            <div style="background: #FEF9F3; border: 1px solid #E8DDD0; border-radius: 6px; padding: 6px 8px; height: 40px; color: #B0A090;">写一段回忆...</div>
+          </div>
+
+          <div style="display: flex; gap: 8px; margin-bottom: 8px;">
+            <div style="flex:1;">
+              <div style="color: #8B7D6D; font-size: 10px; margin-bottom: 2px;">日期 *</div>
+              <div style="background: #FEF9F3; border: 1px solid #E8DDD0; border-radius: 6px; padding: 6px 8px; color: #B0A090; font-size: 10px;">📅 2024-03-15</div>
+            </div>
+            <div style="flex:1;">
+              <div style="color: #8B7D6D; font-size: 10px; margin-bottom: 2px;">分类 *</div>
+              <div style="background: #FEF9F3; border: 1px solid #E8DDD0; border-radius: 6px; padding: 6px 8px; color: #B0A090; font-size: 10px;">🍜 美食 ▾</div>
+            </div>
+          </div>
+
+          <div style="margin-bottom: 8px;">
+            <div style="color: #8B7D6D; font-size: 10px; margin-bottom: 2px;">标签</div>
+            <div style="background: #FEF9F3; border: 1px solid #E8DDD0; border-radius: 6px; padding: 6px 8px;">
+              <span style="background: #F4C2C2; color: #fff; padding: 2px 8px; border-radius: 8px; font-size: 9px; margin-right: 4px;">#火锅</span>
+              <span style="background: #F4C2C2; color: #fff; padding: 2px 8px; border-radius: 8px; font-size: 9px;">#必吃</span>
+              <span style="color: #B0A090; font-size: 9px;">+ 添加</span>
+            </div>
+          </div>
+
+          <div style="margin-bottom: 10px;">
+            <div style="color: #8B7D6D; font-size: 10px; margin-bottom: 2px;">评分</div>
+            <div style="display: flex; gap: 4px; color: #F4C2C2; font-size: 18px;">★★★★<span style="color: #E8DDD0;">★</span></div>
+          </div>
+
+          <div style="background: #F4C2C2; color: #fff; text-align: center; padding: 8px; border-radius: 20px; cursor: pointer;">🌸 发布</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <div class="mockup" style="margin-bottom: 20px;">
+      <div class="mockup-header">⚡ 上传流程</div>
+      <div class="mockup-body" style="background: #FEF9F3; padding: 20px; font-size: 12px;">
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <div style="width: 28px; height: 28px; background: #F4C2C2; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; flex-shrink: 0;">1</div>
+            <div>
+              <b>选择照片</b>
+              <div style="font-size: 10px; color: #B0A090;">拖拽或点击 → 本地预览显示</div>
+            </div>
+          </div>
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <div style="width: 28px; height: 28px; background: #F4C2C2; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; flex-shrink: 0;">2</div>
+            <div>
+              <b>填写信息</b>
+              <div style="font-size: 10px; color: #B0A090;">标题、描述、日期、分类、标签、评分</div>
+            </div>
+          </div>
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <div style="width: 28px; height: 28px; background: #F4C2C2; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; flex-shrink: 0;">3</div>
+            <div>
+              <b>上传到 Supabase Storage</b>
+              <div style="font-size: 10px; color: #B0A090;">文件 → /省份/时间戳_文件名.jpg</div>
+            </div>
+          </div>
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <div style="width: 28px; height: 28px; background: #F4C2C2; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; flex-shrink: 0;">4</div>
+            <div>
+              <b>写入数据库</b>
+              <div style="font-size: 10px; color: #B0A090;">photos 表插入一条记录</div>
+            </div>
+          </div>
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <div style="width: 28px; height: 28px; background: #C4D7B2; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; flex-shrink: 0;">✓</div>
+            <div>
+              <b>列表自动刷新</b>
+              <div style="font-size: 10px; color: #B0A090;">React Query 自动重新拉取数据</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mockup">
+      <div class="mockup-header">🔄 照片的完整生命周期</div>
+      <div class="mockup-body" style="background: #FEF9F3; padding: 16px; font-size: 11px;">
+        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 12px; flex-wrap: wrap; justify-content: center;">
+          <div style="background: #fff; border: 1px solid #F4C2C2; border-radius: 20px; padding: 6px 14px;">📷 上传</div>
+          <span style="color: #F4C2C2;">→</span>
+          <div style="background: #fff; border: 1px solid #F4C2C2; border-radius: 20px; padding: 6px 14px;">📋 展示</div>
+          <span style="color: #F4C2C2;">→</span>
+          <div style="background: #fff; border: 1px solid #F4C2C2; border-radius: 20px; padding: 6px 14px;">🔍 点击放大</div>
+          <span style="color: #A3C4D4;">→</span>
+          <div style="background: #fff; border: 1px solid #A3C4D4; border-radius: 20px; padding: 6px 14px;">✏️ 编辑</div>
+        </div>
+        <div style="font-size: 10px; color: #B0A090; text-align: center;">
+          上传者可以编辑/删除自己的照片<br>
+          灯箱模式下可以看到完整描述、标签、评分、上传者
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

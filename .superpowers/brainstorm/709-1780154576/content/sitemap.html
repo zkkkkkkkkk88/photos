@@ -1,0 +1,131 @@
+<h2>页面结构与导航</h2>
+<p class="subtitle">应用有哪些页面、如何跳转</p>
+
+<div class="mockup" style="margin-bottom: 28px;">
+  <div class="mockup-header">🏠 首页 —— 中国地图</div>
+  <div class="mockup-body" style="background: #FEF9F3; padding: 24px; text-align: center;">
+    <div style="margin-bottom: 12px; display: flex; justify-content: center; gap: 16px;">
+      <span style="font-size: 13px; color: #8B7D6D;">🍥 我们的旅行手帖</span>
+    </div>
+    <div style="width: 260px; height: 200px; margin: 0 auto; background: #fff; border-radius: 12px; border: 2px solid #E8DDD0; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden;">
+      <svg viewBox="0 0 200 160" style="width: 90%; height: auto;">
+        <path d="M50,25 L85,10 L130,12 L170,22 L188,42 L182,58 L160,55 L145,62 L155,72 L145,78 L162,88 L152,98 L138,92 L122,98 L128,108 L112,112 L98,106 L88,118 L72,108 L62,120 L50,110 L42,122 L32,106 L22,98 L18,80 L28,64 L18,50 L28,38 L38,28Z" fill="#FFF5F5" stroke="#F4C2C2" stroke-width="2"/>
+        <!-- Colored provinces with content -->
+        <path d="M85,10 L130,12 L145,62 L122,98 L88,118 L85,72Z" fill="#F4C2C2" opacity="0.7" stroke="#E8A8A8" stroke-width="1"/>
+        <path d="M130,12 L170,22 L160,55 L145,62Z" fill="#F4C2C2" opacity="0.5" stroke="#E8A8A8" stroke-width="1"/>
+        <circle cx="145" cy="55" r="12" fill="white" opacity="0.8"/>
+        <text x="145" y="58" font-size="11" fill="#C49494" text-anchor="middle">3</text>
+      </svg>
+    </div>
+    <div style="display: flex; justify-content: center; gap: 24px; margin-top: 12px; font-size: 11px; color: #B0A090;">
+      <span>🎀 已探索 8 省</span>
+      <span>📸 共 126 张</span>
+    </div>
+    <div style="display: flex; justify-content: center; gap: 8px; margin-top: 10px;">
+      <div style="background: #F4C2C2; color: #fff; padding: 6px 16px; border-radius: 20px; font-size: 12px;">🗺️ 地图</div>
+      <div style="background: transparent; color: #B0A090; padding: 6px 16px; border-radius: 20px; font-size: 12px; border: 1px solid #E8DDD0;">📅 时间线</div>
+      <div style="background: transparent; color: #B0A090; padding: 6px 16px; border-radius: 20px; font-size: 12px; border: 1px solid #E8DDD0;">📊 统计</div>
+    </div>
+  </div>
+</div>
+
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+
+  <div class="mockup">
+    <div class="mockup-header">📄 省份详情页</div>
+    <div class="mockup-body" style="background: #FEF9F3; padding: 16px; font-size: 11px; color: #8B7D6D;">
+      <div style="text-align: center; margin-bottom: 10px;">
+        <span style="font-size: 14px; color: #F4C2C2;">🌸 四川省</span>
+        <span style="display: block; font-size: 10px; color: #B0A090;">12 张照片 · 美食 5 · 景点 4 · 其他 3</span>
+      </div>
+      <div style="background: #fff; border-radius: 8px; padding: 10px; margin-bottom: 6px; display: flex; gap: 8px; align-items: center;">
+        <div style="width: 48px; height: 48px; background: #F4C2C2; border-radius: 6px; flex-shrink: 0;"></div>
+        <div><b>成都火锅</b><br><span style="color:#999;">2024.03 · ⭐⭐⭐⭐⭐</span><br><span style="color:#F4C2C2;">#美食 #必吃</span></div>
+      </div>
+      <div style="background: #fff; border-radius: 8px; padding: 10px; margin-bottom: 6px; display: flex; gap: 8px; align-items: center;">
+        <div style="width: 48px; height: 48px; background: #C4D7B2; border-radius: 6px; flex-shrink: 0;"></div>
+        <div><b>峨眉山日落</b><br><span style="color:#999;">2024.03 · ⭐⭐⭐⭐</span><br><span style="color:#C4D7B2;">#景点 #日落</span></div>
+      </div>
+      <div style="text-align: center;">
+        <div style="background: #F4C2C2; color: #fff; padding: 8px; border-radius: 20px; display: inline-block; cursor: pointer;">+ 添加照片</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mockup">
+    <div class="mockup-header">🖼️ 照片灯箱（点击放大）</div>
+    <div class="mockup-body" style="background: rgba(0,0,0,0.6); padding: 20px; border-radius: 12px; text-align: center;">
+      <div style="background: #fff; border-radius: 12px; padding: 16px; max-width: 240px; margin: 0 auto;">
+        <div style="width: 100%; height: 140px; background: linear-gradient(135deg, #e8ddd0, #f5ede3); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 48px;">🍲</div>
+        <p style="font-size: 13px; margin: 8px 0 4px; font-weight: bold; color: #5A3A2A;">成都火锅</p>
+        <p style="font-size: 10px; color: #999;">2024年3月，和Ta在成都的第一顿火锅，辣到流泪但停不下来。店在小巷子里，老板是个可爱的老奶奶。</p>
+        <div style="display: flex; gap: 4px; justify-content: center; margin-top: 6px;">
+          <span style="background: #F4C2C2; color: #fff; padding: 2px 8px; border-radius: 10px; font-size: 9px;">#美食</span>
+          <span style="background: #F4C2C2; color: #fff; padding: 2px 8px; border-radius: 10px; font-size: 9px;">#必吃</span>
+        </div>
+        <div style="margin-top: 6px; font-size: 10px; color: #B0A090;">
+          ⭐⭐⭐⭐⭐ · 我上传 · 2024.03.15
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px;">
+
+  <div class="mockup">
+    <div class="mockup-header">📅 全局时间线</div>
+    <div class="mockup-body" style="background: #FEF9F3; padding: 16px; font-size: 11px;">
+      <div style="border-left: 2px solid #F4C2C2; padding-left: 16px;">
+        <div style="margin-bottom: 12px;">
+          <div style="color: #F4C2C2; font-weight: bold;">2024.03</div>
+          <div style="background: #fff; border-radius: 6px; padding: 8px; margin-top: 4px;">
+            🍲 成都火锅 — <span style="color:#999;">四川</span>
+          </div>
+        </div>
+        <div style="margin-bottom: 12px;">
+          <div style="color: #F4C2C2; font-weight: bold;">2024.03</div>
+          <div style="background: #fff; border-radius: 6px; padding: 8px; margin-top: 4px;">
+            🏔️ 峨眉山 — <span style="color:#999;">四川</span>
+          </div>
+        </div>
+        <div>
+          <div style="color: #F4C2C2; font-weight: bold;">2023.10</div>
+          <div style="background: #fff; border-radius: 6px; padding: 8px; margin-top: 4px;">
+            🦀 阳澄湖大闸蟹 — <span style="color:#999;">江苏</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mockup">
+    <div class="mockup-header">📊 统计页</div>
+    <div class="mockup-body" style="background: #FEF9F3; padding: 16px; font-size: 11px;">
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+        <div style="background: #FFF5F5; border-radius: 8px; padding: 10px; text-align: center;">
+          <div style="font-size: 20px;">8</div>
+          <div style="color: #B0A090;">已探索省份</div>
+        </div>
+        <div style="background: #FFF5F5; border-radius: 8px; padding: 10px; text-align: center;">
+          <div style="font-size: 20px;">126</div>
+          <div style="color: #B0A090;">总照片数</div>
+        </div>
+        <div style="background: #FFF5F5; border-radius: 8px; padding: 10px; text-align: center;">
+          <div style="font-size: 20px;">🍜</div>
+          <div style="color: #B0A090;">美食最多</div>
+        </div>
+        <div style="background: #FFF5F5; border-radius: 8px; padding: 10px; text-align: center;">
+          <div style="font-size: 20px;">68/58</div>
+          <div style="color: #B0A090;">我 / Ta 贡献</div>
+        </div>
+      </div>
+      <div style="margin-top: 10px; background: #fff; border-radius: 8px; padding: 10px; text-align: center; color: #B0A090;">
+        🗺️ 省份照片数排行<br>
+        <span style="color: #F4C2C2;">四川 12</span> · 云南 9 · 浙江 8 · 江苏 7 · ...
+      </div>
+    </div>
+  </div>
+
+</div>

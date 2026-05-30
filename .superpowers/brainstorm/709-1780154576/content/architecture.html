@@ -1,0 +1,127 @@
+<h2>技术架构与组件树</h2>
+<p class="subtitle">React 项目结构 + 核心组件</p>
+
+<div class="mockup" style="margin-bottom: 24px;">
+  <div class="mockup-header">📁 项目目录结构</div>
+  <div class="mockup-body" style="font-family: monospace; font-size: 11px; padding: 16px;">
+    <div style="color: #A3C4D4;">src/</div>
+    <div style="padding-left: 16px;">
+      <div style="color: #A3C4D4;">├── components/</div>
+      <div style="padding-left: 16px;">
+        <div style="color: #B0A090;">│   ├── <span style="color:#8B7D6D;">MapView.tsx</span> — 中国地图</div>
+        <div style="color: #B0A090;">│   ├── <span style="color:#8B7D6D;">ProvinceDetail.tsx</span> — 省份照片列表</div>
+        <div style="color: #B0A090;">│   ├── <span style="color:#8B7D6D;">PhotoCard.tsx</span> — 单张照片卡片</div>
+        <div style="color: #B0A090;">│   ├── <span style="color:#8B7D6D;">PhotoLightbox.tsx</span> — 照片灯箱（放大）</div>
+        <div style="color: #B0A090;">│   ├── <span style="color:#8B7D6D;">UploadForm.tsx</span> — 上传表单</div>
+        <div style="color: #B0A090;">│   ├── <span style="color:#8B7D6D;">Timeline.tsx</span> — 全局时间线</div>
+        <div style="color: #B0A090;">│   ├── <span style="color:#8B7D6D;">StatsPage.tsx</span> — 统计页</div>
+        <div style="color: #B0A090;">│   ├── <span style="color:#8B7D6D;">NavBar.tsx</span> — 底部导航</div>
+        <div style="color: #B0A090;">│   └── <span style="color:#8B7D6D;">ui/</span> — 通用 UI 组件（按钮、标签等）</div>
+      </div>
+      <div style="color: #A3C4D4;">├── hooks/</div>
+      <div style="padding-left: 16px;">
+        <div style="color: #B0A090;">│   ├── <span style="color:#8B7D6D;">usePhotos.ts</span> — 照片 CRUD</div>
+        <div style="color: #B0A090;">│   ├── <span style="color:#8B7D6D;">useAuth.ts</span> — 登录状态</div>
+        <div style="color: #B0A090;">│   └── <span style="color:#8B7D6D;">useStats.ts</span> — 统计数据</div>
+      </div>
+      <div style="color: #A3C4D4;">├── lib/</div>
+      <div style="padding-left: 16px;">
+        <div style="color: #B0A090;">│   └── <span style="color:#8B7D6D;">supabase.ts</span> — Supabase 客户端</div>
+      </div>
+      <div style="color: #A3C4D4;">├── pages/</div>
+      <div style="padding-left: 16px;">
+        <div style="color: #B0A090;">│   ├── <span style="color:#8B7D6D;">HomePage.tsx</span></div>
+        <div style="color: #B0A090;">│   ├── <span style="color:#8B7D6D;">TimelinePage.tsx</span></div>
+        <div style="color: #B0A090;">│   └── <span style="color:#8B7D6D;">StatsPage.tsx</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="mockup" style="margin-bottom: 24px;">
+  <div class="mockup-header">🧩 组件树</div>
+  <div class="mockup-body" style="background: #FEF9F3; padding: 24px; font-size: 12px;">
+    <div style="text-align: center;">
+      <div style="background: #fff; border: 2px solid #F4C2C2; border-radius: 12px; padding: 10px; display: inline-block; margin-bottom: 8px;">
+        <b>App</b>
+      </div>
+      <div style="display: flex; justify-content: center; gap: 4px; color: #F4C2C2;">│</div>
+      <div style="display: flex; justify-content: center; gap: 4px; font-size: 10px;">
+        <div style="background: #FFF5F5; border: 1px solid #F4C2C2; border-radius: 8px; padding: 6px 10px;">AuthGate</div>
+        <span style="color: #B0A090; padding: 6px 0;">+</span>
+        <div style="background: #FFF5F5; border: 1px solid #F4C2C2; border-radius: 8px; padding: 6px 10px;">NavBar</div>
+      </div>
+      <div style="color: #F4C2C2; margin: 4px 0;">│</div>
+      <div style="display: flex; justify-content: center; gap: 10px;">
+        <div style="flex: 1; max-width: 120px;">
+          <div style="background: #F5EDE3; border: 1px solid #E8DDD0; border-radius: 8px; padding: 8px;">
+            <b>HomePage</b>
+            <div style="font-size: 9px; color: #B0A090; margin-top: 2px;">路由: /</div>
+          </div>
+          <div style="font-size: 9px; padding: 4px;">
+            <div style="color: #C49494;">└ MapView</div>
+            <div style="color: #C49494; padding-left: 8px;">└ ProvinceDetail</div>
+            <div style="color: #C49494; padding-left: 16px;">└ PhotoCard[]</div>
+            <div style="color: #C49494; padding-left: 16px;">└ UploadForm</div>
+            <div style="color: #C49494; padding-left: 24px;">└ PhotoLightbox</div>
+          </div>
+        </div>
+        <div style="flex: 1; max-width: 100px;">
+          <div style="background: #F5EDE3; border: 1px solid #E8DDD0; border-radius: 8px; padding: 8px;">
+            <b>TimelinePage</b>
+            <div style="font-size: 9px; color: #B0A090; margin-top: 2px;">路由: /timeline</div>
+          </div>
+          <div style="font-size: 9px; padding: 4px;">
+            <div style="color: #C49494;">└ Timeline</div>
+            <div style="color: #C49494; padding-left: 8px;">└ PhotoCard[]</div>
+          </div>
+        </div>
+        <div style="flex: 1; max-width: 100px;">
+          <div style="background: #F5EDE3; border: 1px solid #E8DDD0; border-radius: 8px; padding: 8px;">
+            <b>StatsPage</b>
+            <div style="font-size: 9px; color: #B0A090; margin-top: 2px;">路由: /stats</div>
+          </div>
+          <div style="font-size: 9px; padding: 4px;">
+            <div style="color: #C49494;">└ StatsPage</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="mockup">
+  <div class="mockup-header">📦 关键依赖</div>
+  <div class="mockup-body" style="font-size: 12px;">
+    <table style="width: 100%; border-collapse: collapse;">
+      <tr style="border-bottom: 1px solid #E8DDD0;">
+        <td style="padding: 6px 10px; width: 160px;">react + react-dom</td>
+        <td style="padding: 6px 10px; color: #8B7D6D;">UI 框架</td>
+      </tr>
+      <tr style="border-bottom: 1px solid #E8DDD0;">
+        <td style="padding: 6px 10px;">react-router-dom</td>
+        <td style="padding: 6px 10px; color: #8B7D6D;">路由</td>
+      </tr>
+      <tr style="border-bottom: 1px solid #E8DDD0;">
+        <td style="padding: 6px 10px;">echarts + echarts-for-react</td>
+        <td style="padding: 6px 10px; color: #8B7D6D;">中国地图</td>
+      </tr>
+      <tr style="border-bottom: 1px solid #E8DDD0;">
+        <td style="padding: 6px 10px;">@supabase/supabase-js</td>
+        <td style="padding: 6px 10px; color: #8B7D6D;">数据库 + 存储 + 登录</td>
+      </tr>
+      <tr style="border-bottom: 1px solid #E8DDD0;">
+        <td style="padding: 6px 10px;">tailwindcss</td>
+        <td style="padding: 6px 10px; color: #8B7D6D;">样式框架</td>
+      </tr>
+      <tr style="border-bottom: 1px solid #E8DDD0;">
+        <td style="padding: 6px 10px;">@tanstack/react-query</td>
+        <td style="padding: 6px 10px; color: #8B7D6D;">服务端状态管理 + 缓存</td>
+      </tr>
+      <tr>
+        <td style="padding: 6px 10px;">react-dropzone</td>
+        <td style="padding: 6px 10px; color: #8B7D6D;">拖拽上传照片</td>
+      </tr>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,117 @@
+<h2>省份详情页的布局方式？</h2>
+<p class="subtitle">点击一个省份后，照片和说明如何组织展示（单选）</p>
+
+<div class="cards">
+
+  <div class="card" data-choice="a" onclick="toggleSelect(this)">
+    <div class="card-image" style="background: linear-gradient(135deg, #FEF9F3 0%, #F5EDE3 100%); padding: 20px;">
+      <div style="background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,0.04); max-width: 260px; margin: 0 auto;">
+        <div style="background: #F4C2C2; padding: 14px; text-align: center;">
+          <span style="font-size: 14px; color: #8B5E5E;">🌸 四川省</span>
+          <span style="font-size: 11px; color: #B08888; display: block;">去过 3 次 · 12 张照片</span>
+        </div>
+        <div style="padding: 0;">
+          <div style="display: flex; border-bottom: 1px solid #f5f0eb;">
+            <div style="width: 140px; height: 100px; background: linear-gradient(135deg, #e8ddd0, #f5ede3); display: flex; align-items: center; justify-content: center; font-size: 36px;">🍲</div>
+            <div style="flex:1; padding: 10px; font-size: 10px;">
+              <p style="margin:0 0 4px; font-weight: bold;">成都火锅</p>
+              <p style="margin:0; color: #999;">2024.03</p>
+              <p style="margin:2px 0 0; color: #bbb; font-size: 9px;">—— 我</p>
+            </div>
+          </div>
+          <div style="display: flex; border-bottom: 1px solid #f5f0eb;">
+            <div style="width: 140px; height: 100px; background: linear-gradient(135deg, #d0e8d0, #e5f0e0); display: flex; align-items: center; justify-content: center; font-size: 36px;">🏔️</div>
+            <div style="flex:1; padding: 10px; font-size: 10px;">
+              <p style="margin:0 0 4px; font-weight: bold;">峨眉山日落</p>
+              <p style="margin:0; color: #999;">2024.03</p>
+              <p style="margin:2px 0 0; color: #bbb; font-size: 9px;">—— Ta</p>
+            </div>
+          </div>
+          <div style="display: flex;">
+            <div style="width: 140px; height: 100px; background: linear-gradient(135deg, #e8d8f0, #f0e8f5); display: flex; align-items: center; justify-content: center; font-size: 36px;">🐼</div>
+            <div style="flex:1; padding: 10px; font-size: 10px;">
+              <p style="margin:0 0 4px; font-weight: bold;">大熊猫基地</p>
+              <p style="margin:0; color: #999;">2023.09</p>
+              <p style="margin:2px 0 0; color: #bbb; font-size: 9px;">—— 我</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>A. 列表式</h3>
+      <p>照片按时间线排列，每一条左边缩略图、右边标题 + 日期 + 作者。像旅行日记一样翻阅。</p>
+      <div class="pros-cons" style="margin-top:10px;">
+        <div class="pros"><h4>适合</h4><ul><li>大量照片浏览</li><li>日记感强</li><li>信息一目了然</li></ul></div>
+        <div class="cons"><h4>不足</h4><ul><li>图片预览较小</li></ul></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" data-choice="b" onclick="toggleSelect(this)">
+    <div class="card-image" style="background: linear-gradient(135deg, #FEF9F3 0%, #F5EDE3 100%); padding: 20px;">
+      <div style="background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,0.04); max-width: 260px; margin: 0 auto;">
+        <div style="background: #F4C2C2; padding: 14px; text-align: center;">
+          <span style="font-size: 14px; color: #8B5E5E;">🌸 四川省</span>
+        </div>
+        <div style="padding: 10px; display: grid; grid-template-columns: 1fr 1fr; gap: 6px;">
+          <div style="aspect-ratio: 1; background: linear-gradient(135deg, #e8ddd0, #f5ede3); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 28px;">🍲</div>
+          <div style="aspect-ratio: 1; background: linear-gradient(135deg, #d0e8d0, #e5f0e0); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 28px;">🏔️</div>
+          <div style="aspect-ratio: 1; background: linear-gradient(135deg, #e8d8f0, #f0e8f5); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 28px;">🐼</div>
+          <div style="aspect-ratio: 1; background: #FEF9F3; border: 2px dashed #E8DDD0; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 20px; color: #D4C5B9;">+</div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>B. 瀑布流画廊</h3>
+      <p>照片以网格/瀑布流形式铺开，视觉为主。鼠标悬停显示说明文字。像在翻一本摄影集。</p>
+      <div class="pros-cons" style="margin-top:10px;">
+        <div class="pros"><h4>适合</h4><ul><li>照片就是主角</li><li>沉浸浏览</li><li>视觉冲击强</li></ul></div>
+        <div class="cons"><h4>不足</h4><ul><li>说明文字不直观</li></ul></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" data-choice="c" onclick="toggleSelect(this)">
+    <div class="card-image" style="background: linear-gradient(135deg, #FEF9F3 0%, #F5EDE3 100%); padding: 20px;">
+      <div style="background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,0.04); max-width: 260px; margin: 0 auto;">
+        <div style="background: #F4C2C2; padding: 14px; text-align: center;">
+          <span style="font-size: 14px; color: #8B5E5E;">🌸 四川省</span>
+        </div>
+        <div style="padding: 8px; display: flex; gap: 4px;">
+          <div style="flex:1; text-align:center; padding:6px 2px; background:#FFF5F5; border-radius:6px; font-size:9px;">
+            <div>🍜</div>美食
+            <div style="color:#F4C2C2; font-weight:bold;">5</div>
+          </div>
+          <div style="flex:1; text-align:center; padding:6px 2px; background:#FFF5F5; border-radius:6px; font-size:9px;">
+            <div>🏔️</div>景点
+            <div style="color:#F4C2C2; font-weight:bold;">4</div>
+          </div>
+          <div style="flex:1; text-align:center; padding:6px 2px; background:#FFF5F5; border-radius:6px; font-size:9px;">
+            <div>🐼</div>动物
+            <div style="color:#F4C2C2; font-weight:bold;">3</div>
+          </div>
+        </div>
+        <div style="padding: 8px;">
+          <div style="background:#FEF9F3; border-radius:6px; padding:8px; margin-bottom:4px; display:flex; gap:8px;">
+            <div style="font-size:28px;">🍲</div>
+            <div style="font-size:10px;"><b>成都火锅</b><br><span style="color:#999;">2024.03 by 我</span><br><span style="color:#A3C4D4;">#美食 #必吃</span></div>
+          </div>
+          <div style="background:#FEF9F3; border-radius:6px; padding:8px; display:flex; gap:8px;">
+            <div style="font-size:28px;">🏔️</div>
+            <div style="font-size:10px;"><b>峨眉山日落</b><br><span style="color:#999;">2024.03 by Ta</span><br><span style="color:#A3C4D4;">#景点 #日落</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>C. 分类标签 + 列表</h3>
+      <p>顶部按分类筛选（美食/景点/动物等），下方列表展示照片。适合内容类型丰富的省份。</p>
+      <div class="pros-cons" style="margin-top:10px;">
+        <div class="pros"><h4>适合</h4><ul><li>内容丰富时筛选</li><li>美食/景点分开看</li><li>有标签体系</li></ul></div>
+        <div class="cons"><h4>不足</h4><ul><li>需要手动打标签</li><li>结构稍复杂</li></ul></div>
+      </div>
+    </div>
+  </div>
+
+</div>
