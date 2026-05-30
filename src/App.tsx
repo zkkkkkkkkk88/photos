@@ -1,13 +1,21 @@
-function App() {
+import { Routes, Route } from 'react-router-dom';
+import AuthGate from './components/AuthGate';
+import NavBar from './components/NavBar';
+import HomePage from './pages/HomePage';
+import TimelinePage from './pages/TimelinePage';
+import StatsPage from './pages/StatsPage';
+
+export default function App() {
   return (
-    <div className="min-h-screen bg-washi flex items-center justify-center">
-      <div className="card text-center space-y-4">
-        <h1 className="text-3xl font-serif text-sakura">春日和</h1>
-        <p className="text-ink-light">照片地图系统</p>
-        <button className="btn-primary">开始探索</button>
+    <AuthGate>
+      <div className="max-w-lg mx-auto relative min-h-screen bg-washi">
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/timeline" element={<TimelinePage />} />
+          <Route path="/stats" element={<StatsPage />} />
+        </Routes>
+        <NavBar />
       </div>
-    </div>
+    </AuthGate>
   );
 }
-
-export default App;
