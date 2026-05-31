@@ -34,36 +34,27 @@ export default function HomePage() {
   }
 
   return (
-    <div className="min-h-screen bg-transparent">
-      <div className="max-w-4xl mx-auto px-4 pt-2 pb-0.5 text-center">
-        <h1 className="text-base font-serif font-bold text-ink">🍥 我们的旅行手帖</h1>
-        <p className="text-[10px] text-ink-light mt-0.5 space-x-3">
-          <span>🎀 已探索 <b className="text-gold">{totalProvinces}</b> 省</span>
-          <span>📸 共 <b className="text-gold">{totalPhotos}</b> 张</span>
+    <div className="min-h-screen bg-transparent flex flex-col">
+      {/* Compact header */}
+      <div className="px-4 pt-3 pb-1 text-center">
+        <p className="text-xs text-ink-light space-x-3">
+          <span>🎀 <b className="text-gold">{totalProvinces}</b> 省</span>
+          <span>📸 <b className="text-gold">{totalPhotos}</b> 张</span>
         </p>
+        {hoveredProvince && (
+          <span className="inline-block mt-1 bg-black/40 backdrop-blur-sm border border-gold/30 rounded-full px-3 py-0.5 text-xs text-gold">
+            {hoveredProvince.replace('省', '').replace('市', '').replace('自治区', '').replace('特别行政区', '').replace('维吾尔', '').replace('壮族', '').replace('回族', '')}
+          </span>
+        )}
       </div>
 
-      <div className="max-w-4xl mx-auto px-1">
+      {/* Map fills remaining space */}
+      <div className="flex-1">
         <MapView
           provinceStats={provinceStats}
           onProvinceClick={(name) => setSelectedProvince(name)}
           onProvinceHover={setHoveredProvince}
         />
-      </div>
-
-      {hoveredProvince && (
-        <div className="max-w-4xl mx-auto px-4 mt-1 text-center">
-          <span className="inline-block bg-white/5 border border-gold/40 rounded-full px-3 py-1 text-xs text-gold">
-            🌸 {hoveredProvince.replace('省', '').replace('市', '').replace('自治区', '').replace('特别行政区', '').replace('维吾尔', '').replace('壮族', '').replace('回族', '')}
-            {provinceStats.find((s) => s.province === hoveredProvince)
-              ? ` — ${provinceStats.find((s) => s.province === hoveredProvince)!.count} 张`
-              : ' — 暂无照片'}
-          </span>
-        </div>
-      )}
-
-      <div className="max-w-4xl mx-auto px-4 mt-1 text-center">
-        <p className="text-[10px] text-ink-light/60">点击省份查看照片</p>
       </div>
     </div>
   );

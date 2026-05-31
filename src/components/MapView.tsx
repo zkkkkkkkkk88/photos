@@ -130,13 +130,11 @@ export default function MapView({ provinceStats, onProvinceClick, onProvinceHove
   };
 
   return (
-    <div className="glass-panel rounded-3xl overflow-hidden">
-      <ReactECharts
-        option={option}
-        style={{ height: 'calc(100vh - 130px)', minHeight: '400px' }}
-        onEvents={onEvents}
-        opts={{ renderer: 'svg' }}
-      />
-    </div>
+    <ReactECharts
+      option={option}
+      style={{ height: 'calc(100vh - 100px)', minHeight: '400px' }}
+      onEvents={onEvents}
+      opts={{ renderer: 'svg' }}
+    />
   );
 }
