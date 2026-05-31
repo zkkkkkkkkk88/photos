@@ -14,8 +14,8 @@ export default {
         'ai-light': '#EEF4F7',
         washi: '#FEF9F3',
         warm: '#E8DDD0',
-        ink: '#3D3025',
-        'ink-light': '#6B5D52',
+        ink: '#1A1410',
+        'ink-light': '#4A3F35',
       },
       fontFamily: {
         sans: ['"Noto Sans SC"', 'system-ui', 'sans-serif'],

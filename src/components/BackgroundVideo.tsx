@@ -41,19 +41,19 @@ export default function BackgroundVideo() {
           className="absolute inset-0 w-full h-full object-cover"
           src={BASE + VIDEOS[0].file}
         />
-        <div className="absolute inset-0 bg-white/55" />
+        <div className="absolute inset-0 bg-white/15" />
       </div>
 
       {/* Switcher — rendered outside the -z-10 container so it's clickable */}
-      <div className="fixed right-4 bottom-20 flex flex-col gap-1.5 z-50">
+      <div className="fixed right-6 bottom-24 flex flex-col gap-2 z-50">
         {VIDEOS.map((v, i) => (
           <button
             key={v.file}
             onClick={() => setCurrentIndex(i)}
-            className={`text-left px-3 py-1.5 rounded-full text-xs transition-all backdrop-blur-sm cursor-pointer ${
+            className={`text-left px-5 py-2.5 rounded-full text-sm transition-all backdrop-blur-sm cursor-pointer ${
               i === currentIndex
-                ? 'bg-white/85 text-sakura font-medium shadow-sm'
-                : 'bg-white/40 text-ink-light hover:bg-white/60'
+                ? 'bg-white/85 text-sakura font-bold shadow-md scale-105'
+                : 'bg-white/50 text-ink-light hover:bg-white/70 hover:scale-105'
             }`}
           >
             {v.label}
