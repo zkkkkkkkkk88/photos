@@ -53,9 +53,10 @@ export function useUploadPhoto() {
     }) => {
       if (!user) throw new Error('未登录');
 
-      // 1. Upload file to Storage
+      // 1. Upload file to Storage (use user_id folder to avoid Chinese char issues)
       const fileExt = file.name.split('.').pop();
-      const filePath = `${photo.province}/${Date.now()}_${Math.random().toString(36).slice(2, 8)}.${fileExt}`;
+      const safeName = `${Date.now()}_${Math.random().toString(36).slice(2, 8)}.${fileExt}`;
+      const filePath = `${user.id}/${safeName}`;
 
       const { error: uploadError } = await supabase.storage
         .from('photos')
