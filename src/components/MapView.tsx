@@ -50,24 +50,25 @@ export default function MapView({ provinceStats, onProvinceClick, onProvinceHove
   const statsMap = new Map(provinceStats.map((s) => [s.province, s.count]));
 
   const option = {
+    backgroundColor: 'transparent',
     tooltip: {
       trigger: 'item',
       formatter: (params: any) => {
         const name = shortName(params.name);
         const count = statsMap.get(params.name) || 0;
         return count > 0
-          ? `🌸 <b>${name}</b><br/>📸 ${count} 张照片`
-          : `🤍 <b>${name}</b><br/>暂无照片`;
+          ? `✨ <b>${name}</b><br/>📸 ${count} 张照片`
+          : `🌙 <b>${name}</b><br/>暂无照片`;
       },
-      backgroundColor: '#fff',
-      borderColor: '#E8DDD0',
-      textStyle: { color: '#8B7D6D', fontSize: 12 },
+      backgroundColor: 'rgba(0,0,0,0.85)',
+      borderColor: 'rgba(212,175,55,0.4)',
+      textStyle: { color: '#fff', fontSize: 12 },
     },
     visualMap: {
       min: 0,
       max: Math.max(1, ...provinceStats.map((s) => s.count)),
       inRange: {
-        color: ['#F5EDE3', '#FDE8E8', '#F9C5C5', '#F4C2C2', '#E8A8A8'],
+        color: ['#1a1a2e', '#2d2040', '#5a3a3a', '#B8960F', '#D4AF37'],
       },
       calculable: false,
       show: false,
@@ -80,7 +81,7 @@ export default function MapView({ provinceStats, onProvinceClick, onProvinceHove
         roam: false,
         label: {
           show: true,
-          color: '#B0A090',
+          color: 'rgba(255,255,255,0.5)',
           fontSize: 10,
           fontFamily: '"Noto Sans SC", sans-serif',
           formatter: (params: any) => shortName(params.name),
@@ -88,23 +89,23 @@ export default function MapView({ provinceStats, onProvinceClick, onProvinceHove
         emphasis: {
           label: {
             show: true,
-            color: '#8B7D6D',
+            color: '#E8D48B',
             fontSize: 13,
             fontWeight: 'bold',
             formatter: (params: any) => shortName(params.name),
           },
           itemStyle: {
-            areaColor: '#FFF5F5',
-            borderColor: '#F4C2C2',
+            areaColor: '#3a2a10',
+            borderColor: '#D4AF37',
             borderWidth: 2,
-            shadowBlur: 12,
-            shadowColor: 'rgba(244, 194, 194, 0.3)',
+            shadowBlur: 20,
+            shadowColor: 'rgba(212, 175, 55, 0.5)',
           },
         },
         itemStyle: {
-          borderColor: '#fff',
+          borderColor: 'rgba(255,255,255,0.08)',
           borderWidth: 1.5,
-          areaColor: '#F5EDE3',
+          areaColor: '#1a1a2e',
         },
         data: provinceStats.map((s) => ({
           name: s.province,
@@ -129,7 +130,7 @@ export default function MapView({ provinceStats, onProvinceClick, onProvinceHove
   };
 
   return (
-    <div className="bg-white/50 backdrop-blur-sm rounded-2xl border border-warm/40 overflow-hidden shadow-sm">
+    <div className="glass-panel rounded-3xl overflow-hidden">
       <ReactECharts
         option={option}
         style={{ height: 'calc(100vh - 130px)', minHeight: '400px' }}

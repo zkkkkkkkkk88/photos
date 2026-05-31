@@ -6,9 +6,9 @@ export default function AuthGate({ children }: { children: React.ReactNode }) {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-transparent">
+      <div className="min-h-screen flex items-center justify-center bg-black">
         <div className="flex flex-col items-center gap-4">
-          <div className="w-10 h-10 border-3 border-sakura border-t-transparent rounded-full animate-spin" />
+          <div className="w-10 h-10 border-2 border-gold border-t-transparent rounded-full animate-spin" />
           <p className="text-ink-light text-sm">加载中...</p>
         </div>
       </div>
@@ -17,10 +17,10 @@ export default function AuthGate({ children }: { children: React.ReactNode }) {
 
   if (!user) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-washi to-sakura-light">
+      <div className="min-h-screen flex items-center justify-center bg-black">
         <div className="text-center space-y-8 max-w-sm mx-auto p-8">
           <div className="space-y-4">
-            <div className="text-6xl">🌸</div>
+            <div className="text-6xl">🌙</div>
             <h1 className="text-3xl font-serif font-bold text-ink">我们的旅行手帖</h1>
             <p className="text-ink-light text-sm leading-relaxed">
               用照片记录两个人的旅行回忆<br />
@@ -29,9 +29,9 @@ export default function AuthGate({ children }: { children: React.ReactNode }) {
           </div>
 
           <div className="flex items-center gap-3">
-            <div className="flex-1 h-px bg-warm" />
-            <span className="text-warm text-xs">登录方式</span>
-            <div className="flex-1 h-px bg-warm" />
+            <div className="flex-1 h-px bg-white/5" />
+            <span className="text-ink-muted text-xs">登录方式</span>
+            <div className="flex-1 h-px bg-white/5" />
           </div>
 
           <Button variant="primary" onClick={signInWithGitHub} className="w-full py-3 text-base">
@@ -43,7 +43,7 @@ export default function AuthGate({ children }: { children: React.ReactNode }) {
             </span>
           </Button>
 
-          <p className="text-ink-light/50 text-[11px]">
+          <p className="text-ink-muted text-[11px]">
             登录即表示同意仅限两人使用的约定 🤝
           </p>
         </div>

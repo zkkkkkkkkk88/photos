@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>设计方案预览</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: 'Segoe UI', sans-serif; background:#111; color:#fff; overflow:hidden; height:100vh; }
+.tabs { display:flex; justify-content:center; gap:4px; padding:12px; background:#1a1a1a; position:fixed; top:0; left:0; right:0; z-index:100; }
+.tab { padding:10px 24px; border-radius:20px; cursor:pointer; font-size:14px; border:none; background:#333; color:#999; transition:all .2s; }
+.tab.active { background:#fff; color:#111; font-weight:bold; }
+.preview { height:calc(100vh - 56px); margin-top:56px; display:none; overflow:hidden; }
+.preview.active { display:flex; }
+
+/* ===== A: 暗夜影院风 ===== */
+.preview-a { background:url('https://images.unsplash.com/photo-1492571350019-22de08371fd3?w=1200&q=60') center/cover; flex-direction:column; }
+.a-overlay { position:absolute; inset:0; background:rgba(0,0,0,0.3); }
+.a-content { position:relative; z-index:1; display:flex; flex-direction:column; height:100%; }
+.a-header { text-align:center; padding:30px 20px 10px; }
+.a-header h1 { font-size:22px; font-weight:700; color:#fff; letter-spacing:2px; text-shadow:0 0 20px rgba(0,0,0,0.8); }
+.a-header p { font-size:11px; color:rgba(255,255,255,0.6); margin-top:4px; }
+.a-map { flex:1; margin:10px 16px; border-radius:16px; background:rgba(0,0,0,0.45); backdrop-filter:blur(24px); border:1px solid rgba(255,255,255,0.12); display:flex; align-items:center; justify-content:center; }
+.a-map-placeholder { text-align:center; color:rgba(255,255,255,0.5); font-size:13px; }
+.a-nav { display:flex; justify-content:center; gap:12px; padding:16px 0 24px; }
+.a-nav-btn { width:56px; height:56px; border-radius:50%; background:rgba(255,255,255,0.08); backdrop-filter:blur(16px); border:1px solid rgba(255,255,255,0.15); color:#fff; font-size:20px; cursor:pointer; transition:all .3s; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:2px; }
+.a-nav-btn.sel { background:rgba(212,175,55,0.3); border-color:rgba(212,175,55,0.6); box-shadow:0 0 20px rgba(212,175,55,0.3); }
+.a-nav-label { font-size:9px; color:rgba(255,255,255,0.6); }
+.a-side { position:absolute; right:20px; bottom:120px; display:flex; flex-direction:column; gap:8px; z-index:2; }
+.a-side-btn { padding:10px 20px; border-radius:24px; background:rgba(0,0,0,0.5); backdrop-filter:blur(12px); border:1px solid rgba(255,255,255,0.1); color:#fff; font-size:13px; cursor:pointer; transition:all .2s; }
+.a-side-btn.sel { background:rgba(212,175,55,0.4); border-color:rgba(212,175,55,0.7); font-weight:bold; }
+
+/* ===== B: 暖金胶片风 ===== */
+.preview-b { background:url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1200&q=60') center/cover; flex-direction:column; }
+.b-overlay { position:absolute; inset:0; background:linear-gradient(180deg, rgba(180,130,60,0.25) 0%, rgba(120,80,30,0.35) 100%); }
+.b-content { position:relative; z-index:1; display:flex; flex-direction:column; height:100%; }
+.b-header { text-align:center; padding:30px 20px 10px; }
+.b-header h1 { font-family:Georgia,serif; font-size:24px; color:#F5E6C8; letter-spacing:1px; text-shadow:0 2px 8px rgba(0,0,0,0.6); }
+.b-header p { font-size:11px; color:rgba(245,230,200,0.7); margin-top:4px; font-style:italic; }
+.b-map { flex:1; margin:10px 16px; border-radius:12px; background:rgba(180,140,90,0.2); backdrop-filter:blur(12px); border:1.5px solid rgba(200,160,100,0.3); display:flex; align-items:center; justify-content:center; }
+.b-map-placeholder { text-align:center; color:rgba(245,230,200,0.5); font-size:13px; font-family:Georgia,serif; }
+.b-nav { display:flex; justify-content:center; gap:0; padding:8px 16px 20px; }
+.b-nav-btn { flex:1; max-width:100px; text-align:center; padding:12px 0; border:none; background:transparent; color:rgba(245,230,200,0.6); font-family:Georgia,serif; font-size:12px; cursor:pointer; border-top:2px solid transparent; transition:all .3s; }
+.b-nav-btn.sel { color:#F5E6C8; border-top-color:#C8A050; }
+.b-side { position:absolute; left:20px; bottom:100px; display:flex; flex-direction:column; gap:6px; z-index:2; }
+.b-side-btn { padding:8px 18px; border-radius:20px; background:rgba(120,80,30,0.35); backdrop-filter:blur(8px); border:1px solid rgba(200,160,100,0.25); color:#F5E6C8; font-family:Georgia,serif; font-size:12px; cursor:pointer; transition:all .2s; }
+.b-side-btn.sel { background:rgba(200,160,100,0.4); color:#fff; }
+
+/* ===== C: 极简磨砂玻璃 ===== */
+.preview-c { background:url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200&q=60') center/cover; flex-direction:column; }
+.c-overlay { position:absolute; inset:0; }
+.c-content { position:relative; z-index:1; display:flex; flex-direction:column; height:100%; }
+.c-header { text-align:left; padding:40px 24px 8px; }
+.c-header h1 { font-size:28px; font-weight:300; color:#fff; letter-spacing:3px; }
+.c-header p { font-size:11px; color:rgba(255,255,255,0.5); margin-top:2px; font-weight:300; }
+.c-map { flex:1; margin:8px 16px; border-radius:20px; background:rgba(255,255,255,0.08); backdrop-filter:blur(30px); border:1px solid rgba(255,255,255,0.15); display:flex; align-items:center; justify-content:center; }
+.c-map-placeholder { text-align:center; color:rgba(255,255,255,0.4); font-size:13px; font-weight:300; }
+.c-nav { position:absolute; left:16px; top:50%; transform:translateY(-50%); display:flex; flex-direction:column; gap:8px; }
+.c-nav-btn { width:44px; height:44px; border-radius:50%; background:rgba(255,255,255,0.1); backdrop-filter:blur(20px); border:1px solid rgba(255,255,255,0.12); color:#fff; font-size:18px; cursor:pointer; transition:all .3s; display:flex; align-items:center; justify-content:center; }
+.c-nav-btn.sel { background:rgba(255,255,255,0.25); border-color:rgba(255,255,255,0.4); transform:scale(1.1); }
+.c-side { position:absolute; right:16px; bottom:100px; display:flex; flex-direction:column; gap:6px; z-index:2; }
+.c-side-btn { padding:8px 18px; border-radius:20px; background:rgba(255,255,255,0.1); backdrop-filter:blur(20px); border:1px solid rgba(255,255,255,0.1); color:#fff; font-size:12px; font-weight:300; cursor:pointer; transition:all .2s; }
+.c-side-btn.sel { background:rgba(255,255,255,0.25); font-weight:500; }
+</style>
+</head>
+<body>
+
+<div class="tabs">
+  <button class="tab active" onclick="switchTab('a', this)">🎬 暗夜影院</button>
+  <button class="tab" onclick="switchTab('b', this)">🌅 暖金胶片</button>
+  <button class="tab" onclick="switchTab('c', this)">💎 极简磨砂</button>
+</div>
+
+<!-- A: 暗夜影院 -->
+<div class="preview preview-a active" id="preview-a">
+  <div class="a-overlay"></div>
+  <div class="a-content">
+    <div class="a-header">
+      <h1>🍥 我们的旅行手帖</h1>
+      <p>已探索 8 省 · 共 126 张照片</p>
+    </div>
+    <div class="a-map"><div class="a-map-placeholder">🗺️ 中国地图区域<br><small>半透明黑玻璃 · 金色描边</small></div></div>
+    <div class="a-nav">
+      <div class="a-nav-btn sel"><span>🗺️</span><span class="a-nav-label">地图</span></div>
+      <div class="a-nav-btn"><span>📅</span><span class="a-nav-label">时间线</span></div>
+      <div class="a-nav-btn"><span>📊</span><span class="a-nav-label">统计</span></div>
+    </div>
+    <div class="a-side">
+      <div class="a-side-btn sel">🗻 富士山</div>
+      <div class="a-side-btn">🌅 夕阳</div>
+      <div class="a-side-btn">🌸 蜜璃</div>
+    </div>
+  </div>
+</div>
+
+<!-- B: 暖金胶片 -->
+<div class="preview preview-b" id="preview-b">
+  <div class="b-overlay"></div>
+  <div class="b-content">
+    <div class="b-header">
+      <h1>我们的旅行手帖</h1>
+      <p>已探索 8 省 · 共 126 张照片</p>
+    </div>
+    <div class="b-map"><div class="b-map-placeholder">🗺️ 中国地图区域<br><small>琥珀色半透明 · 衬线标题</small></div></div>
+    <div class="b-nav">
+      <div class="b-nav-btn sel">🗺️ 地图</div>
+      <div class="b-nav-btn">📅 时间线</div>
+      <div class="b-nav-btn">📊 统计</div>
+    </div>
+    <div class="b-side">
+      <div class="b-side-btn sel">🗻 富士山</div>
+      <div class="b-side-btn">🌅 夕阳</div>
+      <div class="b-side-btn">🌸 蜜璃</div>
+    </div>
+  </div>
+</div>
+
+<!-- C: 极简磨砂 -->
+<div class="preview preview-c" id="preview-c">
+  <div class="c-overlay"></div>
+  <div class="c-content">
+    <div class="c-header">
+      <h1>旅行手帖</h1>
+      <p>已探索 8 省 · 共 126 张照片</p>
+    </div>
+    <div class="c-map"><div class="c-map-placeholder">🗺️ 中国地图区域<br><small>纯磨砂玻璃 · 极细字体</small></div></div>
+    <div class="c-nav">
+      <div class="c-nav-btn sel">🗺️</div>
+      <div class="c-nav-btn">📅</div>
+      <div class="c-nav-btn">📊</div>
+    </div>
+    <div class="c-side">
+      <div class="c-side-btn sel">🗻 富士山</div>
+      <div class="c-side-btn">🌅 夕阳</div>
+      <div class="c-side-btn">🌸 蜜璃</div>
+    </div>
+  </div>
+</div>
+
+<script>
+function switchTab(id, btn) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.preview').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('preview-'+id).classList.add('active');
+}
+</script>
+</body>
+</html>

@@ -6,16 +6,12 @@ export default {
   theme: {
     extend: {
       colors: {
-        sakura: '#F4C2C2',
-        'sakura-light': '#FFF5F5',
-        matcha: '#C4D7B2',
-        'matcha-light': '#F0F7EC',
-        ai: '#A3C4D4',
-        'ai-light': '#EEF4F7',
-        washi: '#FEF9F3',
-        warm: '#E8DDD0',
-        ink: '#1A1410',
-        'ink-light': '#4A3F35',
+        gold: '#D4AF37',
+        'gold-light': '#E8D48B',
+        'gold-dark': '#B8960F',
+        ink: '#FFFFFF',
+        'ink-light': 'rgba(255, 255, 255, 0.65)',
+        'ink-muted': 'rgba(255, 255, 255, 0.35)',
       },
       fontFamily: {
         sans: ['"Noto Sans SC"', 'system-ui', 'sans-serif'],
@@ -24,6 +20,10 @@ export default {
       borderRadius: {
         '2xl': '16px',
         '3xl': '24px',
+      },
+      boxShadow: {
+        'gold': '0 0 30px rgba(212, 175, 55, 0.2)',
+        'gold-lg': '0 0 60px rgba(212, 175, 55, 0.3)',
       },
     },
   },

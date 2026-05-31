@@ -33,7 +33,7 @@ export default function StatsPage() {
   if (filterCategory) {
     return (
       <div className="min-h-screen bg-transparent">
-        <div className="sticky top-0 bg-white/85 backdrop-blur-md border-b border-warm z-30">
+        <div className="sticky top-0 bg-white/5 backdrop-blur-md border-b border-white/10 z-30">
           <div className="max-w-2xl mx-auto px-4 py-4 flex items-center gap-3">
             <button onClick={() => setFilterCategory(null)} className="text-ink-light hover:text-ink text-sm">
               ← 返回统计
@@ -71,11 +71,11 @@ export default function StatsPage() {
       <div className="max-w-2xl mx-auto px-4 pt-4 space-y-5">
         <div className="grid grid-cols-2 gap-3">
           <div className="card text-center space-y-1">
-            <div className="text-3xl font-bold text-sakura">{stats.totalProvinces}</div>
+            <div className="text-3xl font-bold text-gold">{stats.totalProvinces}</div>
             <div className="text-xs text-ink-light">🎀 已探索省份</div>
           </div>
           <div className="card text-center space-y-1">
-            <div className="text-3xl font-bold text-sakura">{stats.totalPhotos}</div>
+            <div className="text-3xl font-bold text-gold">{stats.totalPhotos}</div>
             <div className="text-xs text-ink-light">📸 总照片数</div>
           </div>
           <div className="card text-center space-y-1 cursor-pointer hover:shadow-md transition-shadow"
@@ -86,7 +86,7 @@ export default function StatsPage() {
             <div className="text-xs text-ink-light">🏆 最多分类（点击查看）</div>
           </div>
           <div className="card text-center space-y-1">
-            <div className="text-xl font-bold text-sakura">
+            <div className="text-xl font-bold text-gold">
               {stats.totalPhotos > 0
                 ? `${stats.myCount} / ${stats.taCount}`
                 : '暂无'}
@@ -106,7 +106,7 @@ export default function StatsPage() {
                 <button
                   key={cat}
                   onClick={() => setFilterCategory(cat)}
-                  className="flex items-center gap-1.5 px-4 py-2 rounded-full bg-sakura-light text-sakura text-sm font-medium hover:bg-sakura hover:text-white transition-colors"
+                  className="flex items-center gap-1.5 px-4 py-2 rounded-full bg-gold/20 text-gold text-sm font-medium hover:bg-gold hover:text-white transition-colors"
                 >
                   {categoryIcons[cat]} {cat}
                   <span className="text-xs opacity-70">{count}</span>
@@ -125,15 +125,15 @@ export default function StatsPage() {
               {stats.provinceRanking.map((p, i) => (
                 <div key={p.province} className="flex items-center gap-3">
                   <span className={`text-xs font-bold w-5 ${
-                    i < 3 ? 'text-sakura' : 'text-ink-light'
+                    i < 3 ? 'text-gold' : 'text-ink-light'
                   }`}>
                     {i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : `${i + 1}`}
                   </span>
                   <span className="flex-1 text-sm text-ink">{p.province}</span>
                   <span className="text-xs text-ink-light">{p.count} 张</span>
-                  <div className="w-24 h-1.5 bg-warm rounded-full overflow-hidden">
+                  <div className="w-24 h-1.5 bg-white/10 rounded-full overflow-hidden">
                     <div
-                      className="h-full bg-sakura rounded-full transition-all"
+                      className="h-full bg-gold rounded-full transition-all"
                       style={{
                         width: `${(p.count / stats.provinceRanking[0].count) * 100}%`,
                       }}

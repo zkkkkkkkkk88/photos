@@ -4,7 +4,7 @@ interface TagProps {
   color?: string;
 }
 
-export default function Tag({ label, onRemove, color = 'bg-sakura text-white' }: TagProps) {
+export default function Tag({ label, onRemove, color = 'bg-gold text-white' }: TagProps) {
   return (
     <span className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium ${color}`}>
       {label.startsWith('#') ? label : `#${label}`}

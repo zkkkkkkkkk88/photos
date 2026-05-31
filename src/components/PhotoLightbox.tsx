@@ -28,7 +28,7 @@ export default function PhotoLightbox({ photo, onClose }: PhotoLightboxProps) {
       onClick={onClose}
     >
       <div
-        className="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl"
+        className="bg-white/5 rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl"
         onClick={(e) => e.stopPropagation()}
       >
         <button
@@ -38,7 +38,7 @@ export default function PhotoLightbox({ photo, onClose }: PhotoLightboxProps) {
           ✕
         </button>
 
-        <div className="aspect-[4/3] bg-warm rounded-t-2xl overflow-hidden">
+        <div className="aspect-[4/3] bg-white/5 rounded-t-2xl overflow-hidden">
           <img
             src={photo.image_url}
             alt={photo.title}
@@ -61,7 +61,7 @@ export default function PhotoLightbox({ photo, onClose }: PhotoLightboxProps) {
           </div>
 
           <div className="flex gap-1.5 flex-wrap">
-            <span className="bg-sakura text-white px-2.5 py-0.5 rounded-full text-xs">
+            <span className="bg-gold text-white px-2.5 py-0.5 rounded-full text-xs">
               {{ '美食': '🍜', '景点': '🏔️', '生活照': '📸', '史迪奇': '👾', '一二布布': '🧸', '其他': '📷' }[photo.category]} {photo.category}
             </span>
             {photo.tags.map((tag) => (

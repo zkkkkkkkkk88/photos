@@ -8,23 +8,26 @@ const navItems = [
 
 export default function NavBar() {
   return (
-    <nav className="fixed left-4 top-1/2 -translate-y-1/2 flex flex-col gap-2 z-40">
-      {navItems.map(({ to, icon, label }) => (
-        <NavLink
-          key={to}
-          to={to}
-          className={({ isActive }) =>
-            `flex flex-col items-center gap-0.5 px-3 py-2.5 rounded-2xl transition-all backdrop-blur-sm ${
-              isActive
-                ? 'bg-white/80 text-sakura shadow-sm scale-110'
-                : 'bg-white/40 text-ink-light hover:bg-white/60 hover:scale-105'
-            }`
-          }
-        >
-          <span className="text-xl">{icon}</span>
-          <span className="text-[10px] font-medium">{label}</span>
-        </NavLink>
-      ))}
+    <nav className="fixed bottom-0 left-0 right-0 z-40 pb-4 pt-2"
+         style={{ background: 'linear-gradient(transparent, rgba(0,0,0,0.6))' }}>
+      <div className="max-w-lg mx-auto flex justify-center gap-3 px-4">
+        {navItems.map(({ to, icon, label }) => (
+          <NavLink
+            key={to}
+            to={to}
+            className={({ isActive }) =>
+              `flex flex-col items-center gap-0.5 px-6 py-2 rounded-2xl transition-all text-xs font-medium ${
+                isActive
+                  ? 'bg-white/5 text-gold shadow-gold'
+                  : 'text-white/40 hover:text-white/70'
+              }`
+            }
+          >
+            <span className="text-lg">{icon}</span>
+            <span>{label}</span>
+          </NavLink>
+        ))}
+      </div>
     </nav>
   );
 }

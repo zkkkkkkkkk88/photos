@@ -15,7 +15,7 @@ export default function StarRating({ value, onChange, readonly = false }: StarRa
           onClick={() => onChange?.(star)}
           className={`text-xl transition-colors ${
             readonly ? 'cursor-default' : 'cursor-pointer hover:scale-110'
-          } ${star <= value ? 'text-sakura' : 'text-warm'}`}
+          } ${star <= value ? 'text-gold' : 'text-ink-muted'}`}
         >
           ★
         </button>

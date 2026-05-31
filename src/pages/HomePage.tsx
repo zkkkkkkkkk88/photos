@@ -38,8 +38,8 @@ export default function HomePage() {
       <div className="max-w-4xl mx-auto px-4 pt-2 pb-0.5 text-center">
         <h1 className="text-base font-serif font-bold text-ink">🍥 我们的旅行手帖</h1>
         <p className="text-[10px] text-ink-light mt-0.5 space-x-3">
-          <span>🎀 已探索 <b className="text-sakura">{totalProvinces}</b> 省</span>
-          <span>📸 共 <b className="text-sakura">{totalPhotos}</b> 张</span>
+          <span>🎀 已探索 <b className="text-gold">{totalProvinces}</b> 省</span>
+          <span>📸 共 <b className="text-gold">{totalPhotos}</b> 张</span>
         </p>
       </div>
 
@@ -53,7 +53,7 @@ export default function HomePage() {
 
       {hoveredProvince && (
         <div className="max-w-4xl mx-auto px-4 mt-1 text-center">
-          <span className="inline-block bg-white border border-sakura rounded-full px-3 py-1 text-xs text-sakura">
+          <span className="inline-block bg-white/5 border border-gold/40 rounded-full px-3 py-1 text-xs text-gold">
             🌸 {hoveredProvince.replace('省', '').replace('市', '').replace('自治区', '').replace('特别行政区', '').replace('维吾尔', '').replace('壮族', '').replace('回族', '')}
             {provinceStats.find((s) => s.province === hoveredProvince)
               ? ` — ${provinceStats.find((s) => s.province === hoveredProvince)!.count} 张`

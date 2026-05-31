@@ -2,38 +2,85 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Serif+SC:wght@400;600;700&display=swap');
+
 @layer base {
   body {
-    @apply bg-washi text-ink font-sans font-medium;
+    @apply text-ink font-sans;
+    background: #0a0a0a;
     font-size: 15px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
-  h1, h2, h3, h4, .text-shadow {
-    text-shadow: 0 1px 4px rgba(255, 255, 255, 0.8), 0 0 10px rgba(255,255,255,0.5);
-  }
+  h1, h2, h3 { text-shadow: 0 0 20px rgba(0,0,0,0.5); }
 }
 
 @layer components {
+  /* Glass card — dark frosted glass */
   .card {
-    @apply bg-white/95 rounded-2xl shadow-sm border border-warm p-4;
+    @apply rounded-2xl p-4;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
   }
-  .text-bubble {
-    @apply bg-white/85 backdrop-blur-sm rounded-xl px-4 py-2 shadow-sm;
+
+  /* Glass panel — heavier blur for map */
+  .glass-panel {
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
   }
+
+  /* Primary button — gold */
   .btn-primary {
-    @apply bg-sakura text-white rounded-full px-6 py-2.5 font-medium
-           hover:brightness-105 active:brightness-95 transition-all
-           disabled:opacity-50 disabled:cursor-not-allowed;
+    @apply bg-gold text-black rounded-full px-6 py-2.5 font-bold text-sm
+           hover:bg-gold-light active:bg-gold-dark transition-all
+           disabled:opacity-40 disabled:cursor-not-allowed;
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
   }
+
+  /* Ghost button */
   .btn-ghost {
-    @apply text-ink-light hover:text-ink border border-warm rounded-full px-4 py-2
-           transition-colors;
-  }
-  .input-field {
-    @apply w-full bg-washi border border-warm rounded-xl px-4 py-2.5
-           text-ink placeholder:text-ink-light/60
-           focus:outline-none focus:ring-2 focus:ring-sakura/40 focus:border-sakura
+    @apply text-ink-light rounded-full px-4 py-2 text-sm
            transition-all;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  .btn-ghost:hover {
+    background: rgba(255, 255, 255, 0.12);
+    color: #fff;
+  }
+
+  /* Input field */
+  .input-field {
+    @apply w-full rounded-xl px-4 py-2.5 text-ink text-sm
+           placeholder:text-ink-muted
+           focus:outline-none focus:ring-2 focus:ring-gold/40
+           transition-all;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  .input-field:focus {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(212, 175, 55, 0.4);
+  }
+
+  select.input-field option {
+    background: #1a1a1a;
+    color: #fff;
+  }
+
+  /* Text bubble for empty states */
+  .text-bubble {
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 16px;
+    padding: 16px 24px;
   }
 }

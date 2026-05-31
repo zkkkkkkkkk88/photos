@@ -26,11 +26,11 @@ export default function PhotoCard({ photo, onClick }: PhotoCardProps) {
   return (
     <div
       onClick={() => onClick(photo)}
-      className="flex gap-3 p-3 bg-white rounded-xl border border-warm cursor-pointer
-                 hover:shadow-md hover:border-sakura/30 transition-all group"
+      className="flex gap-3 p-3 bg-white/5 rounded-xl border border-white/10 cursor-pointer
+                 hover:shadow-md hover:border-gold/30 transition-all group"
     >
       {/* Thumbnail */}
-      <div className="w-20 h-20 flex-shrink-0 rounded-lg overflow-hidden bg-warm">
+      <div className="w-20 h-20 flex-shrink-0 rounded-lg overflow-hidden bg-white/5">
         <img
           src={photo.image_url}
           alt={photo.title}
@@ -53,7 +53,7 @@ export default function PhotoCard({ photo, onClick }: PhotoCardProps) {
           {photo.tags.length > 0 && (
             <div className="flex gap-1 flex-wrap">
               {photo.tags.slice(0, 2).map((tag) => (
-                <Tag key={tag} label={tag} color="bg-sakura-light text-sakura" />
+                <Tag key={tag} label={tag} color="bg-gold/20 text-gold" />
               ))}
               {photo.tags.length > 2 && (
                 <span className="text-[10px] text-ink-light">+{photo.tags.length - 2}</span>

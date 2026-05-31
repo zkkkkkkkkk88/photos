@@ -86,7 +86,7 @@ export default function UploadForm({ province, onSuccess, onCancel }: UploadForm
       <div
         {...getRootProps()}
         className={`border-2 border-dashed rounded-xl p-8 text-center cursor-pointer transition-all
-          ${isDragActive ? 'border-sakura bg-sakura-light scale-[1.02]' : 'border-warm hover:border-sakura/50 bg-washi'}`}
+          ${isDragActive ? 'border-gold bg-gold/20 scale-[1.02]' : 'border-white/10 hover:border-gold/50 bg-transparent'}`}
       >
         <input {...getInputProps()} />
         {preview ? (

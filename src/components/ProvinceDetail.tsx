@@ -35,7 +35,7 @@ export default function ProvinceDetail({ province, onBack }: ProvinceDetailProps
 
   return (
     <div className="min-h-screen bg-transparent">
-      <div className="sticky top-0 bg-white/85 backdrop-blur-md border-b border-warm z-30">
+      <div className="sticky top-0 bg-white/5 backdrop-blur-md border-b border-white/10 z-30">
         <div className="max-w-2xl mx-auto px-4 py-4">
           <div className="flex items-center justify-between mb-2">
             <button onClick={onBack} className="text-ink-light hover:text-ink text-sm flex items-center gap-1">
@@ -59,7 +59,7 @@ export default function ProvinceDetail({ province, onBack }: ProvinceDetailProps
             <button
               onClick={() => setFilterCategory(null)}
               className={`flex-shrink-0 px-3 py-1 rounded-full text-xs transition-all ${
-                !filterCategory ? 'bg-sakura text-white' : 'bg-white/60 text-ink-light hover:bg-white'
+                !filterCategory ? 'bg-gold text-black font-medium' : 'bg-white/10 text-ink-light hover:bg-white/20'
               }`}
             >
               全部
@@ -69,7 +69,7 @@ export default function ProvinceDetail({ province, onBack }: ProvinceDetailProps
                 key={cat}
                 onClick={() => setFilterCategory(filterCategory === cat ? null : cat)}
                 className={`flex-shrink-0 px-3 py-1 rounded-full text-xs transition-all ${
-                  filterCategory === cat ? 'bg-sakura text-white' : 'bg-white/60 text-ink-light hover:bg-white'
+                  filterCategory === cat ? 'bg-gold text-black font-medium' : 'bg-white/10 text-ink-light hover:bg-white/20'
                 }`}
               >
                 {CAT_ICONS[cat]} {cat}

@@ -42,13 +42,13 @@ export default function Timeline() {
   return (
     <>
       <div className="relative pl-6">
-        <div className="absolute left-[11px] top-2 bottom-2 w-0.5 bg-sakura/20" />
+        <div className="absolute left-[11px] top-2 bottom-2 w-0.5 bg-gold/20" />
 
         <div className="space-y-6">
           {grouped.map(([date, items]) => (
             <div key={date} className="relative">
-              <div className="absolute -left-[22px] top-1 w-3 h-3 rounded-full bg-sakura border-2 border-white shadow-sm" />
-              <h3 className="text-sm font-bold text-sakura mb-2">{date}</h3>
+              <div className="absolute -left-[22px] top-1 w-3 h-3 rounded-full bg-gold border-2 border-white shadow-sm" />
+              <h3 className="text-sm font-bold text-gold mb-2">{date}</h3>
               <div className="space-y-2">
                 {items.map((photo) => (
                   <PhotoCard
