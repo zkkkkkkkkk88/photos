@@ -24,7 +24,7 @@ export default function ProvinceDetail({ province, onBack }: ProvinceDetailProps
   return (
     <div className="min-h-screen bg-washi pb-20">
       <div className="sticky top-0 bg-washi/90 backdrop-blur-sm border-b border-warm z-30">
-        <div className="max-w-lg mx-auto px-4 py-4">
+        <div className="max-w-2xl mx-auto px-4 py-4">
           <div className="flex items-center justify-between mb-2">
             <button onClick={onBack} className="text-ink-light hover:text-ink text-sm flex items-center gap-1">
               ← 返回地图
@@ -44,7 +44,7 @@ export default function ProvinceDetail({ province, onBack }: ProvinceDetailProps
         </div>
       </div>
 
-      <div className="max-w-lg mx-auto px-4 pt-4">
+      <div className="max-w-2xl mx-auto px-4 pt-4">
         {isLoading && (
           <div className="text-center py-12 text-ink-light">加载中...</div>
         )}

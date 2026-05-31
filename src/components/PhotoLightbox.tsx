@@ -28,7 +28,7 @@ export default function PhotoLightbox({ photo, onClose }: PhotoLightboxProps) {
       onClick={onClose}
     >
       <div
-        className="bg-white rounded-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto shadow-2xl"
+        className="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl"
         onClick={(e) => e.stopPropagation()}
       >
         <button

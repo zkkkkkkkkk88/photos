@@ -19,11 +19,11 @@ export default function StatsPage() {
 
   return (
     <div className="min-h-screen bg-washi pb-20">
-      <div className="max-w-lg mx-auto px-4 pt-6 pb-2">
+      <div className="max-w-2xl mx-auto px-4 pt-6 pb-2">
         <h1 className="text-xl font-serif font-bold text-ink text-center">📊 旅行统计</h1>
       </div>
 
-      <div className="max-w-lg mx-auto px-4 pt-4 space-y-5">
+      <div className="max-w-2xl mx-auto px-4 pt-4 space-y-5">
         <div className="grid grid-cols-2 gap-3">
           <div className="card text-center space-y-1">
             <div className="text-3xl font-bold text-sakura">{stats.totalProvinces}</div>

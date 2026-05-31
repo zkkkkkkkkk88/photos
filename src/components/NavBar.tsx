@@ -9,7 +9,7 @@ const navItems = [
 export default function NavBar() {
   return (
     <nav className="fixed bottom-0 left-0 right-0 bg-white/90 backdrop-blur-sm border-t border-warm z-40">
-      <div className="max-w-lg mx-auto flex justify-around items-center h-16 px-4">
+      <div className="max-w-2xl mx-auto flex justify-around items-center h-16 px-4">
         {navItems.map(({ to, icon, label }) => (
           <NavLink
             key={to}

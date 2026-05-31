@@ -35,15 +35,15 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-washi pb-20">
-      <div className="max-w-lg mx-auto px-4 pt-6 pb-2 text-center">
-        <h1 className="text-2xl font-serif font-bold text-ink">🍥 我们的旅行手帖</h1>
-        <p className="text-xs text-ink-light mt-1 space-x-3">
+      <div className="max-w-2xl mx-auto px-4 pt-4 pb-1 text-center">
+        <h1 className="text-xl font-serif font-bold text-ink">🍥 我们的旅行手帖</h1>
+        <p className="text-xs text-ink-light mt-0.5 space-x-3">
           <span>🎀 已探索 <b className="text-sakura">{totalProvinces}</b> 省</span>
           <span>📸 共 <b className="text-sakura">{totalPhotos}</b> 张</span>
         </p>
       </div>
 
-      <div className="max-w-lg mx-auto px-2 pt-2">
+      <div className="max-w-2xl mx-auto px-1">
         <MapView
           provinceStats={provinceStats}
           onProvinceClick={(name) => setSelectedProvince(name)}
@@ -52,7 +52,7 @@ export default function HomePage() {
       </div>
 
       {hoveredProvince && (
-        <div className="max-w-lg mx-auto px-4 mt-2 text-center">
+        <div className="max-w-2xl mx-auto px-4 mt-2 text-center">
           <span className="inline-block bg-white border border-sakura rounded-full px-4 py-1.5 text-sm text-sakura">
             🌸 {hoveredProvince}
             {provinceStats.find((s) => s.province === hoveredProvince)
@@ -62,7 +62,7 @@ export default function HomePage() {
         </div>
       )}
 
-      <div className="max-w-lg mx-auto px-4 mt-4 text-center">
+      <div className="max-w-2xl mx-auto px-4 mt-2 text-center">
         <p className="text-[11px] text-ink-light/60">点击省份查看照片</p>
       </div>
     </div>
