@@ -112,7 +112,7 @@ export default function MapView({ provinceStats, onProvinceClick, onProvinceHove
     <div className="bg-white rounded-2xl border border-warm overflow-hidden shadow-sm">
       <ReactECharts
         option={option}
-        style={{ height: '82vh', minHeight: '520px' }}
+        style={{ height: 'calc(100vh - 130px)', minHeight: '400px' }}
         onEvents={onEvents}
         opts={{ renderer: 'svg' }}
       />

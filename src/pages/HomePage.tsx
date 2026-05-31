@@ -35,9 +35,9 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-washi pb-20">
-      <div className="max-w-4xl mx-auto px-4 pt-3 pb-1 text-center">
-        <h1 className="text-xl font-serif font-bold text-ink">🍥 我们的旅行手帖</h1>
-        <p className="text-xs text-ink-light mt-0.5 space-x-3">
+      <div className="max-w-4xl mx-auto px-4 pt-2 pb-0.5 text-center">
+        <h1 className="text-base font-serif font-bold text-ink">🍥 我们的旅行手帖</h1>
+        <p className="text-[10px] text-ink-light mt-0.5 space-x-3">
           <span>🎀 已探索 <b className="text-sakura">{totalProvinces}</b> 省</span>
           <span>📸 共 <b className="text-sakura">{totalPhotos}</b> 张</span>
         </p>
@@ -52,8 +52,8 @@ export default function HomePage() {
       </div>
 
       {hoveredProvince && (
-        <div className="max-w-4xl mx-auto px-4 mt-2 text-center">
-          <span className="inline-block bg-white border border-sakura rounded-full px-4 py-1.5 text-sm text-sakura">
+        <div className="max-w-4xl mx-auto px-4 mt-1 text-center">
+          <span className="inline-block bg-white border border-sakura rounded-full px-3 py-1 text-xs text-sakura">
             🌸 {hoveredProvince}
             {provinceStats.find((s) => s.province === hoveredProvince)
               ? ` — ${provinceStats.find((s) => s.province === hoveredProvince)!.count} 张`
@@ -62,8 +62,8 @@ export default function HomePage() {
         </div>
       )}
 
-      <div className="max-w-4xl mx-auto px-4 mt-2 text-center">
-        <p className="text-[11px] text-ink-light/60">点击省份查看照片</p>
+      <div className="max-w-4xl mx-auto px-4 mt-1 text-center">
+        <p className="text-[10px] text-ink-light/60">点击省份查看照片</p>
       </div>
     </div>
   );
