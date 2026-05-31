@@ -1,10 +1,9 @@
 import { useState, useEffect, useCallback } from 'react';
 
-// Add video filenames here (put video files in public/videos/)
-const VIDEOS: string[] = [
-  '1.mp4',
-  '2.mp4',
-  '3.mp4',
+const VIDEOS = [
+  { file: '1.mp4', label: '🗻 富士山' },
+  { file: '2.mp4', label: '🌅 夕阳' },
+  { file: '3.mp4', label: '🌸 蜜璃' },
 ];
 
 const BASE = import.meta.env.BASE_URL + 'videos/';
@@ -16,65 +15,51 @@ export default function BackgroundVideo() {
     return saved ? parseInt(saved, 10) : 0;
   });
   const [hasError, setHasError] = useState(false);
-  const effectiveIndex = VIDEOS.length > 0 ? currentIndex % VIDEOS.length : 0;
 
   useEffect(() => {
-    localStorage.setItem(STORAGE_KEY, String(effectiveIndex));
-  }, [effectiveIndex]);
+    localStorage.setItem(STORAGE_KEY, String(currentIndex));
+  }, [currentIndex]);
 
-  const nextVideo = useCallback(() => {
-    setCurrentIndex((prev) => (prev + 1) % VIDEOS.length);
+  const switchTo = useCallback((index: number) => {
+    setCurrentIndex(index);
     setHasError(false);
   }, []);
-
-  const prevVideo = useCallback(() => {
-    setCurrentIndex((prev) => (prev - 1 + VIDEOS.length) % VIDEOS.length);
-    setHasError(false);
-  }, []);
-
-  const showControls = VIDEOS.length > 1;
 
   return (
     <div className="fixed inset-0 -z-10 overflow-hidden">
-      {VIDEOS.length > 0 && !hasError && (
+      {!hasError && (
         <video
-          key={VIDEOS[effectiveIndex]}
+          key={VIDEOS[currentIndex].file}
           autoPlay
           muted
           loop
           playsInline
           className="absolute inset-0 w-full h-full object-cover"
-          style={{ filter: 'brightness(0.55) saturate(0.7)' }}
+          style={{ filter: 'brightness(0.75) saturate(0.85)' }}
           onError={() => setHasError(true)}
         >
-          <source src={BASE + VIDEOS[effectiveIndex]} type="video/mp4" />
+          <source src={BASE + VIDEOS[currentIndex].file} type="video/mp4" />
         </video>
       )}
-      {/* Fallback gradient background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-washi/90 via-washi/70 to-sakura-light/80" />
+      {/* Light overlay for readability */}
+      <div className="absolute inset-0 bg-gradient-to-b from-washi/40 via-washi/30 to-sakura-light/50" />
 
-      {/* Video switcher controls */}
-      {showControls && (
-        <div className="absolute bottom-20 left-1/2 -translate-x-1/2 flex items-center gap-3 bg-white/60 backdrop-blur-sm rounded-full px-3 py-1.5 shadow-sm z-20">
+      {/* Video switcher — left side */}
+      <div className="absolute bottom-20 left-4 flex flex-col gap-1.5 z-20">
+        {VIDEOS.map((v, i) => (
           <button
-            onClick={prevVideo}
-            className="text-ink-light hover:text-ink text-sm px-1 transition-colors"
-            title="上一个"
+            key={v.file}
+            onClick={() => switchTo(i)}
+            className={`text-left px-3 py-1.5 rounded-full text-xs transition-all backdrop-blur-sm ${
+              i === currentIndex
+                ? 'bg-white/85 text-sakura font-medium shadow-sm'
+                : 'bg-white/40 text-ink-light hover:bg-white/60'
+            }`}
           >
-            ◀
+            {v.label}
           </button>
-          <span className="text-[10px] text-ink-light whitespace-nowrap">
-            🎬 {effectiveIndex + 1}/{VIDEOS.length}
-          </span>
-          <button
-            onClick={nextVideo}
-            className="text-ink-light hover:text-ink text-sm px-1 transition-colors"
-            title="下一个"
-          >
-            ▶
-          </button>
-        </div>
-      )}
+        ))}
+      </div>
     </div>
   );
 }
