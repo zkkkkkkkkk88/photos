@@ -78,7 +78,7 @@ export default function UploadForm({ province, onSuccess, onCancel }: UploadForm
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
+    <form onSubmit={handleSubmit} className="space-y-4 pb-20">
       <h3 className="text-base font-bold text-ink text-center">
         🌸 添加照片 · {province}
       </h3>

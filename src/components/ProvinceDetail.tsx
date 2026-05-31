@@ -34,7 +34,7 @@ export default function ProvinceDetail({ province, onBack }: ProvinceDetailProps
   }, [photos, filterCategory]);
 
   return (
-    <div className="min-h-screen bg-transparent">
+    <div className="min-h-screen bg-transparent pb-20">
       <div className="sticky top-0 bg-white/5 backdrop-blur-md border-b border-white/10 z-30">
         <div className="max-w-2xl mx-auto px-4 py-4">
           <div className="flex items-center justify-between mb-2">
