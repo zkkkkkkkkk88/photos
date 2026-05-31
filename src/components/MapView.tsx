@@ -1,7 +1,24 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import * as echarts from 'echarts';
 import ReactECharts from 'echarts-for-react';
 import type { ProvinceStats } from '../types';
+
+// Map full province names to short 2-char names
+const SHORT_NAMES: Record<string, string> = {
+  '北京市': '北京', '天津市': '天津', '河北省': '河北', '山西省': '山西',
+  '内蒙古自治区': '内蒙古', '辽宁省': '辽宁', '吉林省': '吉林', '黑龙江省': '黑龙江',
+  '上海市': '上海', '江苏省': '江苏', '浙江省': '浙江', '安徽省': '安徽',
+  '福建省': '福建', '江西省': '江西', '山东省': '山东', '河南省': '河南',
+  '湖北省': '湖北', '湖南省': '湖南', '广东省': '广东', '广西壮族自治区': '广西',
+  '海南省': '海南', '重庆市': '重庆', '四川省': '四川', '贵州省': '贵州',
+  '云南省': '云南', '西藏自治区': '西藏', '陕西省': '陕西', '甘肃省': '甘肃',
+  '青海省': '青海', '宁夏回族自治区': '宁夏', '新疆维吾尔自治区': '新疆',
+  '台湾省': '台湾', '香港特别行政区': '香港', '澳门特别行政区': '澳门',
+};
+
+function shortName(name: string): string {
+  return SHORT_NAMES[name] || name;
+}
 
 interface MapViewProps {
   provinceStats: ProvinceStats[];
@@ -36,10 +53,11 @@ export default function MapView({ provinceStats, onProvinceClick, onProvinceHove
     tooltip: {
       trigger: 'item',
       formatter: (params: any) => {
+        const name = shortName(params.name);
         const count = statsMap.get(params.name) || 0;
         return count > 0
-          ? `🌸 <b>${params.name}</b><br/>📸 ${count} 张照片`
-          : `🤍 <b>${params.name}</b><br/>暂无照片`;
+          ? `🌸 <b>${name}</b><br/>📸 ${count} 张照片`
+          : `🤍 <b>${name}</b><br/>暂无照片`;
       },
       backgroundColor: '#fff',
       borderColor: '#E8DDD0',
@@ -63,15 +81,17 @@ export default function MapView({ provinceStats, onProvinceClick, onProvinceHove
         label: {
           show: true,
           color: '#B0A090',
-          fontSize: 9,
+          fontSize: 10,
           fontFamily: '"Noto Sans SC", sans-serif',
+          formatter: (params: any) => shortName(params.name),
         },
         emphasis: {
           label: {
             show: true,
             color: '#8B7D6D',
-            fontSize: 12,
+            fontSize: 13,
             fontWeight: 'bold',
+            formatter: (params: any) => shortName(params.name),
           },
           itemStyle: {
             areaColor: '#FFF5F5',
