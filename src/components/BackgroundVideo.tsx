@@ -41,7 +41,7 @@ export default function BackgroundVideo() {
           className="absolute inset-0 w-full h-full object-cover"
           src={BASE + VIDEOS[0].file}
         />
-        <div className="absolute inset-0 bg-white/25" />
+        <div className="absolute inset-0 bg-white/55" />
       </div>
 
       {/* Switcher — rendered outside the -z-10 container so it's clickable */}
