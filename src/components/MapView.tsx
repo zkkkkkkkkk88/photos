@@ -13,7 +13,7 @@ export default function MapView({ provinceStats, onProvinceClick, onProvinceHove
   const [mapGeoJSON, setMapGeoJSON] = useState<any>(null);
 
   useEffect(() => {
-    fetch('https://geo.datav.aliyun.com/areas_v3/bound/100000_full.json')
+    fetch(import.meta.env.BASE_URL + 'china.json')
       .then((res) => res.json())
       .then((geo) => {
         echarts.registerMap('china', geo);
