@@ -12,7 +12,11 @@ interface PhotoCardProps {
 const categoryIcons: Record<string, string> = {
   '美食': '🍜',
   '景点': '🏔️',
+  '生活照': '📸',
+  '史迪奇': '👾',
+  '一二布布': '🧸',
   '其他': '📷',
+};
 };
 
 export default function PhotoCard({ photo, onClick }: PhotoCardProps) {

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { useProvincePhotos } from '../hooks/usePhotos';
 import PhotoCard from './PhotoCard';
 import PhotoLightbox from './PhotoLightbox';
@@ -11,15 +11,27 @@ interface ProvinceDetailProps {
   onBack: () => void;
 }
 
+const ALL_CATEGORIES = ['美食', '景点', '生活照', '史迪奇', '一二布布', '其他'] as const;
+const CAT_ICONS: Record<string, string> = {
+  '美食': '🍜', '景点': '🏔️', '生活照': '📸', '史迪奇': '👾', '一二布布': '🧸', '其他': '📷',
+};
+
 export default function ProvinceDetail({ province, onBack }: ProvinceDetailProps) {
   const { data: photos, isLoading, error } = useProvincePhotos(province);
   const [selectedPhoto, setSelectedPhoto] = useState<Photo | null>(null);
   const [showUpload, setShowUpload] = useState(false);
+  const [filterCategory, setFilterCategory] = useState<string | null>(null);
 
   const categoryCounts = photos?.reduce((acc, p) => {
     acc[p.category] = (acc[p.category] || 0) + 1;
     return acc;
   }, {} as Record<string, number>);
+
+  const filteredPhotos = useMemo(() => {
+    if (!photos) return null;
+    if (!filterCategory) return photos;
+    return photos.filter((p) => p.category === filterCategory);
+  }, [photos, filterCategory]);
 
   return (
     <div className="min-h-screen bg-transparent pb-20">
@@ -35,13 +47,36 @@ export default function ProvinceDetail({ province, onBack }: ProvinceDetailProps
             <p className="text-xs text-ink-light mt-1">
               {photos.length} 张照片
               {categoryCounts && Object.entries(categoryCounts).map(([cat, count]) => (
-                <span key={cat} className="ml-2">
-                  {{ '美食': '🍜', '景点': '🏔️', '其他': '📷' }[cat]} {count}
-                </span>
+                <span key={cat} className="ml-2">{CAT_ICONS[cat]} {count}</span>
               ))}
             </p>
           )}
         </div>
+
+        {/* Category filter tabs */}
+        {photos && photos.length > 0 && (
+          <div className="max-w-2xl mx-auto px-4 pb-2 flex gap-1.5 overflow-x-auto">
+            <button
+              onClick={() => setFilterCategory(null)}
+              className={`flex-shrink-0 px-3 py-1 rounded-full text-xs transition-all ${
+                !filterCategory ? 'bg-sakura text-white' : 'bg-white/60 text-ink-light hover:bg-white'
+              }`}
+            >
+              全部
+            </button>
+            {ALL_CATEGORIES.filter((c) => categoryCounts?.[c]).map((cat) => (
+              <button
+                key={cat}
+                onClick={() => setFilterCategory(filterCategory === cat ? null : cat)}
+                className={`flex-shrink-0 px-3 py-1 rounded-full text-xs transition-all ${
+                  filterCategory === cat ? 'bg-sakura text-white' : 'bg-white/60 text-ink-light hover:bg-white'
+                }`}
+              >
+                {CAT_ICONS[cat]} {cat}
+              </button>
+            ))}
+          </div>
+        )}
       </div>
 
       <div className="max-w-2xl mx-auto px-4 pt-4">
@@ -62,15 +97,21 @@ export default function ProvinceDetail({ province, onBack }: ProvinceDetailProps
           </div>
         )}
 
-        {photos && photos.length > 0 && (
+        {filteredPhotos && filteredPhotos.length > 0 && (
           <div className="space-y-2">
-            {photos.map((photo) => (
+            {filteredPhotos.map((photo) => (
               <PhotoCard
                 key={photo.id}
                 photo={photo}
                 onClick={setSelectedPhoto}
               />
             ))}
+          </div>
+        )}
+
+        {filteredPhotos && filteredPhotos.length === 0 && photos && photos.length > 0 && (
+          <div className="text-center py-8 text-ink-light text-sm">
+            该分类下暂无照片
           </div>
         )}
 

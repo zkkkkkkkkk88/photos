@@ -3,6 +3,9 @@ import { useStats } from '../hooks/useStats';
 const categoryIcons: Record<string, string> = {
   '美食': '🍜',
   '景点': '🏔️',
+  '生活照': '📸',
+  '史迪奇': '👾',
+  '一二布布': '🧸',
   '其他': '📷',
 };
 

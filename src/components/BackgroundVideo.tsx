@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 const VIDEOS = [
   { file: '1.mp4', label: '🗻 富士山' },
@@ -14,48 +14,40 @@ export default function BackgroundVideo() {
     const saved = localStorage.getItem(STORAGE_KEY);
     return saved ? parseInt(saved, 10) : 0;
   });
-  const [videoErrors, setVideoErrors] = useState<Set<number>>(new Set());
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     localStorage.setItem(STORAGE_KEY, String(currentIndex));
+    // Force play current video
+    if (videoRef.current) {
+      videoRef.current.load();
+      videoRef.current.play().catch(() => {});
+    }
   }, [currentIndex]);
-
-  const switchTo = useCallback((index: number) => {
-    setCurrentIndex(index);
-  }, []);
-
-  const currentError = videoErrors.has(currentIndex);
 
   return (
     <div className="fixed inset-0 -z-10 overflow-hidden bg-black">
-      {!currentError && (
-        <video
-          key={currentIndex}
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover"
-          onError={() => setVideoErrors((prev) => new Set(prev).add(currentIndex))}
-          onLoadedData={() => setVideoErrors((prev) => {
-            const next = new Set(prev);
-            next.delete(currentIndex);
-            return next;
-          })}
-        >
-          <source src={BASE + VIDEOS[currentIndex].file} type="video/mp4" />
-        </video>
-      )}
+      <video
+        ref={videoRef}
+        key={currentIndex}
+        autoPlay
+        muted
+        loop
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover"
+      >
+        <source src={BASE + VIDEOS[currentIndex].file} type="video/mp4" />
+      </video>
 
-      {/* Subtle overlay just for text readability */}
+      {/* Subtle overlay for text readability */}
       <div className="absolute inset-0 bg-white/10" />
 
-      {/* Video switcher — left side */}
+      {/* Video switcher */}
       <div className="absolute bottom-20 left-4 flex flex-col gap-1.5 z-20">
         {VIDEOS.map((v, i) => (
           <button
             key={v.file}
-            onClick={() => switchTo(i)}
+            onClick={() => setCurrentIndex(i)}
             className={`text-left px-3 py-1.5 rounded-full text-xs transition-all backdrop-blur-sm ${
               i === currentIndex
                 ? 'bg-white/85 text-sakura font-medium shadow-sm'
