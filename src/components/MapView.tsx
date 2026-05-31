@@ -77,7 +77,9 @@ export default function MapView({ provinceStats, onProvinceClick, onProvinceHove
       {
         type: 'map',
         map: 'china',
-        aspectScale: 0.85,
+        aspectScale: 1.0,
+        layoutCenter: ['50%', '52%'],
+        layoutSize: '95%',
         roam: false,
         label: {
           show: true,
@@ -132,7 +134,7 @@ export default function MapView({ provinceStats, onProvinceClick, onProvinceHove
   return (
     <ReactECharts
       option={option}
-      style={{ height: '100%', minHeight: '400px' }}
+      style={{ height: 'calc(100vh - 140px)', minHeight: '500px', width: '100%' }}
       onEvents={onEvents}
       opts={{ renderer: 'svg' }}
     />

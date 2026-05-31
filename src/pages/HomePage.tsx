@@ -56,9 +56,6 @@ export default function HomePage() {
         />
       </div>
 
-      <div className="text-center pb-1">
-        <p className="text-[10px] text-ink-muted">点击省份查看照片</p>
-      </div>
     </div>
   );
 }
