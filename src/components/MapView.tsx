@@ -56,20 +56,23 @@ export default function MapView({ provinceStats, onProvinceClick, onProvinceHove
       formatter: (params: any) => {
         const name = shortName(params.name);
         const count = statsMap.get(params.name) || 0;
-        return count > 0
-          ? `✨ <b>${name}</b><br/>📸 ${count} 张照片`
-          : `🌙 <b>${name}</b><br/>暂无照片`;
+        if (count >= 100) return `🔴 <b>${name}</b><br/>📸 ${count} 张照片`;
+        if (count >= 10) return `🟡 <b>${name}</b><br/>📸 ${count} 张照片`;
+        if (count >= 1) return `🟣 <b>${name}</b><br/>📸 ${count} 张照片`;
+        return `🌙 <b>${name}</b><br/>暂无照片`;
       },
       backgroundColor: 'rgba(0,0,0,0.85)',
       borderColor: 'rgba(212,175,55,0.4)',
       textStyle: { color: '#fff', fontSize: 12 },
     },
     visualMap: {
-      min: 0,
-      max: Math.max(1, ...provinceStats.map((s) => s.count)),
-      inRange: {
-        color: ['#1a1a2e', '#2d2040', '#5a3a3a', '#B8960F', '#D4AF37'],
-      },
+      type: 'piecewise',
+      pieces: [
+        { min: 100, color: '#DC2626', label: '100+' },
+        { min: 10, max: 99, color: '#D4AF37', label: '10-99' },
+        { min: 1, max: 9, color: '#7C3AED', label: '1-9' },
+        { value: 0, color: '#1a1a2e' },
+      ],
       calculable: false,
       show: false,
     },
