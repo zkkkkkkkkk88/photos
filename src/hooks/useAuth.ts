@@ -50,11 +50,25 @@ export function useAuth() {
     });
   }
 
+  async function signInWithEmail(email: string, password: string) {
+    const { error } = await supabase.auth.signInWithPassword({ email, password });
+    return error;
+  }
+
+  async function signUpWithEmail(email: string, password: string) {
+    const { error } = await supabase.auth.signUp({
+      email,
+      password,
+      options: { emailRedirectTo: window.location.origin },
+    });
+    return error;
+  }
+
   async function signOut() {
     await supabase.auth.signOut();
     setUser(null);
     setProfile(null);
   }
 
-  return { user, profile, loading, signInWithGitHub, signOut };
+  return { user, profile, loading, signInWithGitHub, signInWithEmail, signUpWithEmail, signOut };
 }
