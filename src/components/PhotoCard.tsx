@@ -17,7 +17,6 @@ const categoryIcons: Record<string, string> = {
   '一二布布': '🧸',
   '其他': '📷',
 };
-};
 
 export default function PhotoCard({ photo, onClick }: PhotoCardProps) {
   const { user } = useAuth();
