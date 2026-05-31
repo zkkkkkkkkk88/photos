@@ -35,11 +35,11 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-transparent flex flex-col">
-      {/* Compact header */}
       <div className="px-4 pt-3 pb-1 text-center">
-        <p className="text-xs text-ink-light space-x-3">
-          <span>🎀 <b className="text-gold">{totalProvinces}</b> 省</span>
-          <span>📸 <b className="text-gold">{totalPhotos}</b> 张</span>
+        <h1 className="text-lg font-serif font-bold text-ink">🍥 我们的旅行手帖</h1>
+        <p className="text-xs text-ink-light mt-0.5 space-x-3">
+          <span>🎀 已探索 <b className="text-gold">{totalProvinces}</b> 省</span>
+          <span>📸 共 <b className="text-gold">{totalPhotos}</b> 张</span>
         </p>
         {hoveredProvince && (
           <span className="inline-block mt-1 bg-black/40 backdrop-blur-sm border border-gold/30 rounded-full px-3 py-0.5 text-xs text-gold">
@@ -48,13 +48,16 @@ export default function HomePage() {
         )}
       </div>
 
-      {/* Map fills remaining space */}
       <div className="flex-1">
         <MapView
           provinceStats={provinceStats}
           onProvinceClick={(name) => setSelectedProvince(name)}
           onProvinceHover={setHoveredProvince}
         />
+      </div>
+
+      <div className="text-center pb-1">
+        <p className="text-[10px] text-ink-muted">点击省份查看照片</p>
       </div>
     </div>
   );

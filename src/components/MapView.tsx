@@ -132,7 +132,7 @@ export default function MapView({ provinceStats, onProvinceClick, onProvinceHove
   return (
     <ReactECharts
       option={option}
-      style={{ height: 'calc(100vh - 100px)', minHeight: '400px' }}
+      style={{ height: '100%', minHeight: '400px' }}
       onEvents={onEvents}
       opts={{ renderer: 'svg' }}
     />
