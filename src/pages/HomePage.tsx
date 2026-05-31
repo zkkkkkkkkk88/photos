@@ -34,7 +34,7 @@ export default function HomePage() {
   }
 
   return (
-    <div className="min-h-screen bg-washi pb-20">
+    <div className="min-h-screen bg-transparent pb-20">
       <div className="max-w-4xl mx-auto px-4 pt-2 pb-0.5 text-center">
         <h1 className="text-base font-serif font-bold text-ink">🍥 我们的旅行手帖</h1>
         <p className="text-[10px] text-ink-light mt-0.5 space-x-3">

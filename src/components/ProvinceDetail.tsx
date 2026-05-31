@@ -22,7 +22,7 @@ export default function ProvinceDetail({ province, onBack }: ProvinceDetailProps
   }, {} as Record<string, number>);
 
   return (
-    <div className="min-h-screen bg-washi pb-20">
+    <div className="min-h-screen bg-transparent pb-20">
       <div className="sticky top-0 bg-washi/90 backdrop-blur-sm border-b border-warm z-30">
         <div className="max-w-2xl mx-auto px-4 py-4">
           <div className="flex items-center justify-between mb-2">

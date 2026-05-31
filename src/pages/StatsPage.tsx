@@ -11,14 +11,14 @@ export default function StatsPage() {
 
   if (!stats) {
     return (
-      <div className="min-h-screen bg-washi flex items-center justify-center">
+      <div className="min-h-screen bg-transparent flex items-center justify-center">
         <p className="text-ink-light">加载中...</p>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-washi pb-20">
+    <div className="min-h-screen bg-transparent pb-20">
       <div className="max-w-2xl mx-auto px-4 pt-6 pb-2">
         <h1 className="text-xl font-serif font-bold text-ink text-center">📊 旅行统计</h1>
       </div>
