@@ -18,39 +18,39 @@ export default function BackgroundVideo() {
   });
   const videoRef = useRef<HTMLVideoElement>(null);
 
-  // Switch video source when index changes
+  // Switch video when index changes
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
-    const src = BASE + VIDEOS[currentIndex].file;
-    video.src = src;
+    video.src = BASE + VIDEOS[currentIndex].file;
     video.load();
     video.play().catch(() => {});
     try { localStorage.setItem(STORAGE_KEY, String(currentIndex)); } catch {}
   }, [currentIndex]);
 
   return (
-    <div className="fixed inset-0 -z-10 overflow-hidden bg-black">
-      <video
-        ref={videoRef}
-        autoPlay
-        muted
-        loop
-        playsInline
-        className="absolute inset-0 w-full h-full object-cover"
-        src={BASE + VIDEOS[currentIndex].file}
-      />
+    <>
+      {/* Background layer */}
+      <div className="fixed inset-0 -z-10 overflow-hidden bg-black">
+        <video
+          ref={videoRef}
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover"
+          src={BASE + VIDEOS[0].file}
+        />
+        <div className="absolute inset-0 bg-white/25" />
+      </div>
 
-      {/* Subtle overlay for text readability */}
-      <div className="absolute inset-0 bg-white/10" />
-
-      {/* Video switcher — right side */}
-      <div className="absolute bottom-20 right-4 flex flex-col gap-1.5 z-50">
+      {/* Switcher — rendered outside the -z-10 container so it's clickable */}
+      <div className="fixed right-4 bottom-20 flex flex-col gap-1.5 z-50">
         {VIDEOS.map((v, i) => (
           <button
             key={v.file}
             onClick={() => setCurrentIndex(i)}
-            className={`text-left px-3 py-1.5 rounded-full text-xs transition-all backdrop-blur-sm ${
+            className={`text-left px-3 py-1.5 rounded-full text-xs transition-all backdrop-blur-sm cursor-pointer ${
               i === currentIndex
                 ? 'bg-white/85 text-sakura font-medium shadow-sm'
                 : 'bg-white/40 text-ink-light hover:bg-white/60'
@@ -60,6 +60,6 @@ export default function BackgroundVideo() {
           </button>
         ))}
       </div>
-    </div>
+    </>
   );
 }
