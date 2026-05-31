@@ -19,7 +19,7 @@ export default function UploadForm({ province, onSuccess, onCancel }: UploadForm
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [date, setDate] = useState(new Date().toISOString().slice(0, 10));
-  const [category, setCategory] = useState<'美食' | '景点' | '生活照' | '史迪奇' | '一二布布' | '其他'>('美食');
+  const [category, setCategory] = useState<'美食' | '景点' | '生活照' | '史迪奇' | '一二布布' | '花' | '其他'>('美食');
   const [tags, setTags] = useState<string[]>([]);
   const [tagInput, setTagInput] = useState('');
   const [rating, setRating] = useState(0);
@@ -139,13 +139,14 @@ export default function UploadForm({ province, onSuccess, onCancel }: UploadForm
           <select
             className="input-field"
             value={category}
-            onChange={(e) => setCategory(e.target.value as '美食' | '景点' | '生活照' | '史迪奇' | '一二布布' | '其他')}
+            onChange={(e) => setCategory(e.target.value as '美食' | '景点' | '生活照' | '史迪奇' | '一二布布' | '花' | '其他')}
           >
             <option value="美食">🍜 美食</option>
             <option value="景点">🏔️ 景点</option>
             <option value="生活照">📸 生活照</option>
             <option value="史迪奇">👾 史迪奇</option>
             <option value="一二布布">🧸 一二布布</option>
+            <option value="花">🌺 花</option>
             <option value="其他">📷 其他</option>
           </select>
         </div>

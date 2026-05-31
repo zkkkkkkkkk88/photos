@@ -6,10 +6,10 @@ import PhotoLightbox from '../components/PhotoLightbox';
 import type { Photo } from '../types';
 
 const categoryIcons: Record<string, string> = {
-  '美食': '🍜', '景点': '🏔️', '生活照': '📸', '史迪奇': '👾', '一二布布': '🧸', '其他': '📷',
+  '美食': '🍜', '景点': '🏔️', '生活照': '📸', '史迪奇': '👾', '一二布布': '🧸', '花': '🌺', '其他': '📷',
 };
 
-const ALL_CATEGORIES = ['美食', '景点', '生活照', '史迪奇', '一二布布', '其他'] as const;
+const ALL_CATEGORIES = ['美食', '景点', '生活照', '史迪奇', '一二布布', '花', '其他'] as const;
 
 export default function StatsPage() {
   const stats = useStats();

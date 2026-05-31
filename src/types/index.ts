@@ -13,7 +13,7 @@ export interface Photo {
   title: string;
   description: string;
   date: string;
-  category: '美食' | '景点' | '生活照' | '史迪奇' | '一二布布' | '其他';
+  category: '美食' | '景点' | '生活照' | '史迪奇' | '一二布布' | '花' | '其他';
   tags: string[];
   rating: number;
   created_at: string;

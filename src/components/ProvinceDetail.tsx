@@ -11,9 +11,9 @@ interface ProvinceDetailProps {
   onBack: () => void;
 }
 
-const ALL_CATEGORIES = ['美食', '景点', '生活照', '史迪奇', '一二布布', '其他'] as const;
+const ALL_CATEGORIES = ['美食', '景点', '生活照', '史迪奇', '一二布布', '花', '其他'] as const;
 const CAT_ICONS: Record<string, string> = {
-  '美食': '🍜', '景点': '🏔️', '生活照': '📸', '史迪奇': '👾', '一二布布': '🧸', '其他': '📷',
+  '美食': '🍜', '景点': '🏔️', '生活照': '📸', '史迪奇': '👾', '一二布布': '🧸', '花': '🌺', '其他': '📷',
 };
 
 export default function ProvinceDetail({ province, onBack }: ProvinceDetailProps) {

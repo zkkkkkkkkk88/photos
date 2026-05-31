@@ -15,6 +15,7 @@ const categoryIcons: Record<string, string> = {
   '生活照': '📸',
   '史迪奇': '👾',
   '一二布布': '🧸',
+  '花': '🌺',
   '其他': '📷',
 };
 

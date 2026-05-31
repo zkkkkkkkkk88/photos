@@ -62,7 +62,7 @@ export default function PhotoLightbox({ photo, onClose }: PhotoLightboxProps) {
 
           <div className="flex gap-1.5 flex-wrap">
             <span className="bg-gold text-white px-2.5 py-0.5 rounded-full text-xs">
-              {{ '美食': '🍜', '景点': '🏔️', '生活照': '📸', '史迪奇': '👾', '一二布布': '🧸', '其他': '📷' }[photo.category]} {photo.category}
+              {{ '美食': '🍜', '景点': '🏔️', '生活照': '📸', '史迪奇': '👾', '一二布布': '🧸', '花': '🌺', '其他': '📷' }[photo.category]} {photo.category}
             </span>
             {photo.tags.map((tag) => (
               <Tag key={tag} label={tag} />
