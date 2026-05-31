@@ -14,7 +14,7 @@ export default function BackgroundVideo() {
     const saved = localStorage.getItem(STORAGE_KEY);
     return saved ? parseInt(saved, 10) : 0;
   });
-  const [hasError, setHasError] = useState(false);
+  const [videoErrors, setVideoErrors] = useState<Set<number>>(new Set());
 
   useEffect(() => {
     localStorage.setItem(STORAGE_KEY, String(currentIndex));
@@ -22,27 +22,33 @@ export default function BackgroundVideo() {
 
   const switchTo = useCallback((index: number) => {
     setCurrentIndex(index);
-    setHasError(false);
   }, []);
 
+  const currentError = videoErrors.has(currentIndex);
+
   return (
-    <div className="fixed inset-0 -z-10 overflow-hidden">
-      {!hasError && (
+    <div className="fixed inset-0 -z-10 overflow-hidden bg-black">
+      {!currentError && (
         <video
-          key={VIDEOS[currentIndex].file}
+          key={currentIndex}
           autoPlay
           muted
           loop
           playsInline
           className="absolute inset-0 w-full h-full object-cover"
-          style={{ filter: 'brightness(0.75) saturate(0.85)' }}
-          onError={() => setHasError(true)}
+          onError={() => setVideoErrors((prev) => new Set(prev).add(currentIndex))}
+          onLoadedData={() => setVideoErrors((prev) => {
+            const next = new Set(prev);
+            next.delete(currentIndex);
+            return next;
+          })}
         >
           <source src={BASE + VIDEOS[currentIndex].file} type="video/mp4" />
         </video>
       )}
-      {/* Light overlay for readability */}
-      <div className="absolute inset-0 bg-gradient-to-b from-washi/40 via-washi/30 to-sakura-light/50" />
+
+      {/* Subtle overlay just for text readability */}
+      <div className="absolute inset-0 bg-white/10" />
 
       {/* Video switcher — left side */}
       <div className="absolute bottom-20 left-4 flex flex-col gap-1.5 z-20">
