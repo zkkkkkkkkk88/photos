@@ -31,8 +31,10 @@ export default function Timeline() {
     return (
       <div className="text-center py-16 space-y-4">
         <div className="text-5xl">📅</div>
-        <p className="text-ink-light">还没有照片记录</p>
-        <p className="text-xs text-ink-light/60">回到地图添加第一张照片吧</p>
+        <div className="text-bubble inline-block">
+          <p className="text-ink font-medium">还没有照片记录</p>
+          <p className="text-xs text-ink-light mt-1">回到地图添加第一张照片吧</p>
+        </div>
       </div>
     );
   }

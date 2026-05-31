@@ -1,16 +1,26 @@
+import { useState, useMemo } from 'react';
 import { useStats } from '../hooks/useStats';
+import { useAllPhotos } from '../hooks/usePhotos';
+import PhotoCard from '../components/PhotoCard';
+import PhotoLightbox from '../components/PhotoLightbox';
+import type { Photo } from '../types';
 
 const categoryIcons: Record<string, string> = {
-  '美食': '🍜',
-  '景点': '🏔️',
-  '生活照': '📸',
-  '史迪奇': '👾',
-  '一二布布': '🧸',
-  '其他': '📷',
+  '美食': '🍜', '景点': '🏔️', '生活照': '📸', '史迪奇': '👾', '一二布布': '🧸', '其他': '📷',
 };
+
+const ALL_CATEGORIES = ['美食', '景点', '生活照', '史迪奇', '一二布布', '其他'] as const;
 
 export default function StatsPage() {
   const stats = useStats();
+  const { data: allPhotos } = useAllPhotos();
+  const [filterCategory, setFilterCategory] = useState<string | null>(null);
+  const [selectedPhoto, setSelectedPhoto] = useState<Photo | null>(null);
+
+  const categoryPhotos = useMemo(() => {
+    if (!allPhotos || !filterCategory) return null;
+    return allPhotos.filter((p) => p.category === filterCategory);
+  }, [allPhotos, filterCategory]);
 
   if (!stats) {
     return (
@@ -20,10 +30,42 @@ export default function StatsPage() {
     );
   }
 
+  if (filterCategory) {
+    return (
+      <div className="min-h-screen bg-transparent">
+        <div className="sticky top-0 bg-white/85 backdrop-blur-md border-b border-warm z-30">
+          <div className="max-w-2xl mx-auto px-4 py-4 flex items-center gap-3">
+            <button onClick={() => setFilterCategory(null)} className="text-ink-light hover:text-ink text-sm">
+              ← 返回统计
+            </button>
+            <h2 className="text-lg font-serif font-bold text-ink">
+              {categoryIcons[filterCategory]} {filterCategory}
+            </h2>
+            <span className="text-xs text-ink-light">{categoryPhotos?.length || 0} 张</span>
+          </div>
+        </div>
+
+        <div className="max-w-2xl mx-auto px-4 pt-4 space-y-2 pb-8">
+          {categoryPhotos && categoryPhotos.length > 0 ? (
+            categoryPhotos.map((photo) => (
+              <PhotoCard key={photo.id} photo={photo} onClick={setSelectedPhoto} />
+            ))
+          ) : (
+            <div className="text-center py-12 text-ink-light">暂无照片</div>
+          )}
+        </div>
+
+        {selectedPhoto && (
+          <PhotoLightbox photo={selectedPhoto} onClose={() => setSelectedPhoto(null)} />
+        )}
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-transparent">
       <div className="max-w-2xl mx-auto px-4 pt-6 pb-2">
-        <h1 className="text-xl font-serif font-bold text-ink text-center">📊 旅行统计</h1>
+        <h1 className="text-xl font-serif font-bold text-ink text-center text-shadow">📊 旅行统计</h1>
       </div>
 
       <div className="max-w-2xl mx-auto px-4 pt-4 space-y-5">
@@ -36,11 +78,12 @@ export default function StatsPage() {
             <div className="text-3xl font-bold text-sakura">{stats.totalPhotos}</div>
             <div className="text-xs text-ink-light">📸 总照片数</div>
           </div>
-          <div className="card text-center space-y-1">
+          <div className="card text-center space-y-1 cursor-pointer hover:shadow-md transition-shadow"
+               onClick={() => stats.topCategory !== '暂无' && setFilterCategory(stats.topCategory)}>
             <div className="text-2xl">
               {categoryIcons[stats.topCategory]} {stats.topCategory}
             </div>
-            <div className="text-xs text-ink-light">🏆 照片最多分类</div>
+            <div className="text-xs text-ink-light">🏆 最多分类（点击查看）</div>
           </div>
           <div className="card text-center space-y-1">
             <div className="text-xl font-bold text-sakura">
@@ -49,6 +92,27 @@ export default function StatsPage() {
                 : '暂无'}
             </div>
             <div className="text-xs text-ink-light">👤 我 / Ta 贡献</div>
+          </div>
+        </div>
+
+        {/* Category selector — view all photos by category */}
+        <div className="card">
+          <h3 className="text-sm font-bold text-ink mb-3">🏷️ 按分类查看全部照片</h3>
+          <div className="flex flex-wrap gap-2">
+            {ALL_CATEGORIES.map((cat) => {
+              const count = allPhotos?.filter((p) => p.category === cat).length || 0;
+              if (count === 0) return null;
+              return (
+                <button
+                  key={cat}
+                  onClick={() => setFilterCategory(cat)}
+                  className="flex items-center gap-1.5 px-4 py-2 rounded-full bg-sakura-light text-sakura text-sm font-medium hover:bg-sakura hover:text-white transition-colors"
+                >
+                  {categoryIcons[cat]} {cat}
+                  <span className="text-xs opacity-70">{count}</span>
+                </button>
+              );
+            })}
           </div>
         </div>
 
