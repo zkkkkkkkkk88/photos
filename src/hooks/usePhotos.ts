@@ -98,6 +98,27 @@ export function useUploadPhoto() {
   });
 }
 
+// Update a photo (metadata only)
+export function useUpdatePhoto() {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async ({ id, updates }: { id: string; updates: Partial<Pick<Photo, 'title' | 'description' | 'date' | 'category' | 'tags' | 'rating'>> }) => {
+      const { data, error } = await supabase
+        .from('photos')
+        .update(updates)
+        .eq('id', id)
+        .select()
+        .single();
+      if (error) throw error;
+      return data;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['photos'] });
+    },
+  });
+}
+
 // Delete a photo
 export function useDeletePhoto() {
   const queryClient = useQueryClient();
