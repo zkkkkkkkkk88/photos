@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 
 const VIDEOS = [
   { file: '1.mp4', label: '🗻 富士山' },
-  { file: '2.mp4', label: '🌅 夕阳' },
+  { file: '2.mp4', label: '🌅 义勇' },
   { file: '3.mp4', label: '🌸 蜜璃' },
 ];
 
